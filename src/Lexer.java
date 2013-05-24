@@ -12,26 +12,36 @@ public class Lexer {
 	private int c;
     private int line = 1;
 	
+
+	@SuppressWarnings("unused")
 	private Lexer() {};
 
 	public Lexer(InputStream in) {
 		this.in = in;
 	};
+	
+	/*
+	 * called for saved the char into the yyval
+	 * it will append the current char to  the yylval, and read next char 
+	 */
     private void getChar(){
 		if (c >= 0) {
 			try {
-				yylval += c;
-				c = System.in.read();	
+				yylval += (char)c;
+				c = in.read();	
 			} catch (Exception e) {
 				c = (-1);
 			}
 		}
     }
 	
-	private void nextChar() {
+    /*
+     * read next char
+     */
+	public void nextChar() {
 		if (c >= 0) {
 			try {
-				c = System.in.read();
+				c = in.read();
 			} catch (Exception e) {
 				c = (-1);
 			}
@@ -43,17 +53,22 @@ public class Lexer {
 		System.exit(-1);
 	}
 
+	/*
+	 * get a ID started with the key words
+	 */
 	private void ContinueGetID(){
 		do {
 			String s = "";
-			s += c;
+			if (c < 0)
+				break;
+			s += (char)c;
 			Matcher matcher = SPERATOR.matcher(s);
 			if (matcher.matches() == true)
 				break;
 			getChar();
 		}while(true);
-		
 	}
+	
 	public int yylex() {
 		 for (;;) {
 		      // Skip whitespace
@@ -66,6 +81,12 @@ public class Lexer {
 		        return (token=Tokens.ENDINPUT);
 		      }
 		      switch (c) {
+		        case '$' : 
+		        	      if (Interpreter.shellMode == true){
+		        	    	  return (token=Tokens.ENDINPUT);
+		        	      } else {
+		        	    	  yyerror("Illegal character "+"$" + "in file mode");
+		        	      }
 		        case '+' : nextChar();
 		                   return token='+';
 		        case '-' : // '-' and  ->
@@ -126,7 +147,7 @@ public class Lexer {
 		        	       } else {
 		        	    	   yyerror("Illegal character "+c);
 		        	       }
-//		        	       ; let; in; end; if; then; else; while; do; nil; ; snd; head; tail; and; or; not
+//	-----------------------------------------------------------------------------
 		        case 'f' :  // fun and fst
 		        		   yylval="";
 		        	       getChar();
@@ -150,18 +171,202 @@ public class Lexer {
 		        	       ContinueGetID();
 		        	       return token=Tokens.ID;
 		        case 'l' :  // let
-		        default  : if (Character.isDigit((char)c)) {
-		                     int n = 0;
-		                       do {
-		                         n = 10*n + (c - '0');
-		                         nextChar();
-		                       } while (Character.isDigit((char)c));
-		                       yylval += n;
-		                       return token=0;
-		                     } else {
-		                       //yyerror("Illegal character "+c);
-		                       nextChar();
-		                     }
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'e'){
+	        	    	   getChar();
+	        	    	   if (c == 't')
+	        	    	   {
+	        	    		   getChar();
+	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    			   return token=Tokens.LET;
+	        	    	   }
+	        	       } 
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        case 'i' : // in and if
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'n'){
+	        	    	   getChar();
+	        
+	        	    	   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   return token=Tokens.IN;
+
+	        	       } else if (c == 'f'){
+	          	    	   getChar();
+	          		        
+        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+        	    			   return token=Tokens.IF;
+
+	        	       }
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        case 'e' : // end and else
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'n'){
+	        	    	   getChar();
+	        	    	   if (c == 'd'){
+	        	    		   getChar();
+	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    			   return token=Tokens.END;
+	        	    	   }
+
+	        	       } else if (c == 'l'){
+	          	    	   getChar();
+	          		       if (c == 's'){
+	          		    	   getChar();
+	          		    	   if (c == 'e'){
+	          		    		   getChar();
+	          		    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	          		    			   return token=Tokens.ELSE;
+	          		    	   }
+	          		       }
+
+	        	       }
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        case 't' : // then and tail
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'h'){
+	        	    	   getChar();
+	        	    	   if (c == 'e'){
+	        	    		   getChar();
+	        	    		   if (c == 'n'){
+	        	    			   getChar();
+	        	    			   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    				   return token=Tokens.THEN;
+	        	    		   }
+	        	    	   }
+	        	       } else if (c == 'a'){
+	          	    	   getChar();
+	          		       if (c == 'i'){
+	          		    	   getChar();
+	          		    	   if (c == 'l'){
+	          		    		   getChar();
+	          		    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	          		    			   return token=Tokens.TAIL;
+	          		    	   }
+	          		       }
+
+	        	       }
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        case 'w' : // while
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'h'){
+	        	    	   getChar();
+	        	    	   if (c == 'i'){
+	        	    		   getChar();
+	        	    		   if (c == 'l'){
+	        	    			   getChar();
+	        	    			   if (c == 'e'){
+	        	    				   getChar();
+	        	    			   	   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    					   return token=Tokens.WHILE;
+	        	    			   }
+	        	    			   
+	        	    		   }
+	        	    	   }
+	        	       }
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        case 'd' :  // do
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'o'){
+	        	    	   getChar();
+	        	    	   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   return token=Tokens.DO;
+	        	       } 
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        case 'n' :  // nil and not
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'i'){
+	        	    	   getChar();
+	        	    	   if (c == 'l')
+	        	    	   {
+	        	    		   getChar();
+	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    			   return token=Tokens.NIL;
+	        	    	   }
+	        	       } else if (c == 'o'){
+	        	    	   getChar();
+	        	    	   if (c == 't')
+	        	    	   {
+	        	    		   getChar();
+	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    			   return token=Tokens.NOT;
+	        	    	   }
+	        	       }
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        case 's' :  // snd
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'n'){
+	        	    	   getChar();
+	        	    	   if (c == 'd')
+	        	    	   {
+	        	    		   getChar();
+	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    			   return token=Tokens.SND;
+	        	    	   }
+	        	       } 
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+
+		        case 'h' :  // head
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'e'){
+	        	    	   getChar();
+	        	    	   if (c == 'a')
+	        	    	   {
+	        	    		   getChar();
+		        	    	   if (c == 'd')
+		        	    	   {
+		        	    		   getChar();
+		        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    			   return token=Tokens.HEAD;
+		        	    	   }
+	        	    	   }
+	        	       } 
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        case 'a' :  // and
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'n'){
+	        	    	   getChar();
+	        	    	   if (c == 'd')
+	        	    	   {
+	        	    		   getChar();
+	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    			   return token=Tokens.AND;
+	        	    	   }
+	        	       } 
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        case 'o' :  // or
+	        		   yylval="";
+	        	       getChar();
+	        	       if (c == 'r'){
+	        	    	   getChar();
+	        	    	   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   return token=Tokens.OR;
+	        	       } 
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
+		        default  : 
+		        	   yylval="";
+	        	       ContinueGetID();
+	        	       return token=Tokens.ID;
 		      }
 		    }
 	}
