@@ -1,4 +1,4 @@
-// Output created by jacc on Tue May 21 20:08:26 CST 2013
+// Output created by jacc on Mon May 27 20:44:48 CST 2013
 
 interface Tokens {
     int ENDINPUT = 0;
@@ -27,7 +27,7 @@ interface Tokens {
     int WHILE = 23;
     int error = 24;
     
-    int ASSIGNMENT = 25;
+    int ASSIGNMENT = 25; //added by wp manually
     // '(' (code=40)
     // ')' (code=41)
     // '*' (code=42)
@@ -40,6 +40,4 @@ interface Tokens {
     // '=' (code=61)
     // '>' (code=62)
     // '~' (code=126)
-    
-    String args[] = {"ENDINPUT","AND","BOOLEAN","CONS","DO","ELSE","END","FST","FUN","HEAD","ID","IF","IN","INTEGER","LAMDA","LET","NIL","NOT","OR","SKIP","SND","TAIL","THEN","WHILE","error"};
 }
