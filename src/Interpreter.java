@@ -41,9 +41,10 @@ public class Interpreter {
 			printUsage(args);
 		}
 		lexer.nextChar();
+
 		for (;;) {
 			if (lexer.yylex() > 0){
-				if (Lexer.token == 10)
+				if (Lexer.token == Tokens.ID || Lexer.token == Tokens.BOOLEAN || Lexer.token == Tokens.INTEGER)
 					System.out.println(Lexer.token + " " + Lexer.yylval);
 				else if (Lexer.token < 25)
 					System.out.println(Lexer.token + " " + Tokens.args[Lexer.token]);

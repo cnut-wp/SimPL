@@ -40,4 +40,5 @@ interface Tokens {
     // '=' (code=61)
     // '>' (code=62)
     // '~' (code=126)
+    String args[] = {"ENDINPUT","AND","BOOLEAN","CONS","DO","ELSE","END","FST","FUN","HEAD","ID","IF","IN","INTEGER","LAMDA","LET","NIL","NOT","OR","SKIP","SND","TAIL","THEN","WHILE","error", "ASSIGNMENT"};
 }

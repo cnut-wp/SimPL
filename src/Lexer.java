@@ -20,6 +20,18 @@ public class Lexer {
 		this.in = in;
 	};
 	
+	
+	/* 
+	 * is the current char among punctuation characters 
+	 */
+	boolean isPunctuation(){
+		String s = "";
+		if (c < 0)
+			return false;
+		s += (char)c;
+		Matcher matcher = SPERATOR.matcher(s);
+		return matcher.matches();
+	}
 	/*
 	 * called for saved the char into the yyval
 	 * it will append the current char to  the yylval, and read next char 
@@ -49,10 +61,27 @@ public class Lexer {
 	}
 	
 	private void yyerror(String s){
-		System.err.println("in line "+ line + ": " + s);
+		System.err.println("at line "+ line + ": " + s);
 		System.exit(-1);
 	}
 
+	
+	private void ContinueGetInteger(){
+		do {
+			String s = "";
+			if (c < 0)
+				break;
+			char tmp = (char)c;
+			s += tmp;
+			Matcher matcher = SPERATOR.matcher(s);
+			if (matcher.matches() == true)
+				break;
+			if (!(tmp>='0' && tmp<='9'))
+				yyerror("get an integer, here should be a digit, but here is " + tmp);
+			getChar();
+		}while(true);
+	}
+	
 	/*
 	 * get a ID started with the key words
 	 */
@@ -61,12 +90,19 @@ public class Lexer {
 			String s = "";
 			if (c < 0)
 				break;
-			s += (char)c;
+			char tmp = (char)c;
+			s += tmp;
 			Matcher matcher = SPERATOR.matcher(s);
 			if (matcher.matches() == true)
 				break;
+			if (!((tmp >= 'a' && tmp <= 'z') ||(tmp>='0' && tmp<='9')))
+				yyerror("get an ID, here should be a valid char, but here is " + tmp);
 			getChar();
 		}while(true);
+		char first = yylval.charAt(0);
+		if (!(first >= 'a' && first <= 'z')){
+			yyerror("get an ID, the fisrt char should be a valid char, but here is " + first);
+		}
 	}
 	
 	public int yylex() {
@@ -87,16 +123,30 @@ public class Lexer {
 		        	      } else {
 		        	    	  yyerror("Illegal character "+"$" + "in file mode");
 		        	      }
-		        case '+' : nextChar();
-		                   return token='+';
+		        case '+' : // '+'
+		        	       nextChar();
+		        	       return token='+';
+		        	       /* positive number
+		        	        if (Character.isDigit((char)c)){
+		        	    	   yylval = "";
+				        	   ContinueGetID();
+				        	   return token=Tokens.INTEGER;		
+		        	       } else {
+		        	    	   return token='+';
+		        	       }
+		        	       */
 		        case '-' : // '-' and  ->
 		        	       nextChar();
-		        	       if (c != '>'){
-		        	    	   return token='-';
+		        	       if (c == '>'){
+		        	    	   nextChar();
+			        	       return token=Tokens.LAMDA;
+		        	       /*} else if (Character.isDigit((char)c)){
+		        	    	   yylval = "-";
+				        	   ContinueGetID();
+				        	   return token=Tokens.INTEGER; */
 		        	       } else {
-		        	    	  nextChar();
-		        	    	  return token=Tokens.LAMDA;
-		        	       }
+		        	    	   return token='-';
+		        	       } 
 		        case '*' : nextChar();
 		                   return token='*';
 		        case '/' :  // '/' and /*  */
@@ -123,7 +173,6 @@ public class Lexer {
 	        		       return token='>';
 		        case '<' : nextChar();
 	        		       return token='<';
-
 		        case '(' : nextChar();
 		                   return token='(';
 		        case ')' : nextChar();
@@ -132,8 +181,15 @@ public class Lexer {
 		                   return token=';';
 		        case ',' : nextChar();
     				       return token=',';
-		        case '~' : nextChar();
-			               return token='~';
+		        case '~' :  // negative Integer
+		        	       nextChar();
+		        		   if (Character.isDigit((char)c)){
+		        			   yylval = "-";
+		        			   ContinueGetInteger();
+		        			   return token=Tokens.INTEGER;		
+		        		   } else {
+		        			   yyerror("the char following ~ should be digit value");
+		        		   }
 			               
 		        case ':' :  // := assignment  :: cons
 		        	       nextChar();
@@ -148,7 +204,7 @@ public class Lexer {
 		        	    	   yyerror("Illegal character "+c);
 		        	       }
 //	-----------------------------------------------------------------------------
-		        case 'f' :  // fun and fst
+		        case 'f' :  // fun and fst and false
 		        		   yylval="";
 		        	       getChar();
 		        	       if (c == 'u'){
@@ -156,7 +212,8 @@ public class Lexer {
 		        	    	   if (c == 'n')
 		        	    	   {
 		        	    		   getChar();
-		        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   if (isPunctuation())
 		        	    			   return token=Tokens.FUN;
 		        	    	   }
 		        	       } else if (c == 's'){
@@ -164,8 +221,26 @@ public class Lexer {
 		        	    	   if (c == 't')
 		        	    	   {
 		        	    		   getChar();
-		        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   if (isPunctuation())
 		        	    			   return token=Tokens.FST;
+		        	    	   }
+		        	       } else if (c == 'a'){
+		        	    	   getChar();
+		        	    	   if (c == 'l')
+		        	    	   {
+		        	    		   getChar();
+		        	    		   if (c == 's')
+			        	    	   {
+		        	    			   getChar();
+			        	    		   if (c == 'e')
+				        	    	   {
+				        	    		   getChar();
+				        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+				        	    		   if (isPunctuation())
+				        	    			   return token=Tokens.BOOLEAN;
+				        	    	   }
+			        	    	   }
 		        	    	   }
 		        	       }
 		        	       ContinueGetID();
@@ -178,7 +253,8 @@ public class Lexer {
 	        	    	   if (c == 't')
 	        	    	   {
 	        	    		   getChar();
-	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   if (isPunctuation())
 	        	    			   return token=Tokens.LET;
 	        	    	   }
 	        	       } 
@@ -189,14 +265,14 @@ public class Lexer {
 	        	       getChar();
 	        	       if (c == 'n'){
 	        	    	   getChar();
-	        
-	        	    	   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+        	    		   if (isPunctuation())
 	        	    		   return token=Tokens.IN;
 
 	        	       } else if (c == 'f'){
 	          	    	   getChar();
-	          		        
-        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+        	    		   if (isPunctuation())
         	    			   return token=Tokens.IF;
 
 	        	       }
@@ -209,7 +285,8 @@ public class Lexer {
 	        	    	   getChar();
 	        	    	   if (c == 'd'){
 	        	    		   getChar();
-	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   if (isPunctuation())
 	        	    			   return token=Tokens.END;
 	        	    	   }
 
@@ -219,7 +296,8 @@ public class Lexer {
 	          		    	   getChar();
 	          		    	   if (c == 'e'){
 	          		    		   getChar();
-	          		    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   if (isPunctuation())
 	          		    			   return token=Tokens.ELSE;
 	          		    	   }
 	          		       }
@@ -227,7 +305,7 @@ public class Lexer {
 	        	       }
 	        	       ContinueGetID();
 	        	       return token=Tokens.ID;
-		        case 't' : // then and tail
+		        case 't' : // then and tail and true
 	        		   yylval="";
 	        	       getChar();
 	        	       if (c == 'h'){
@@ -236,7 +314,8 @@ public class Lexer {
 	        	    		   getChar();
 	        	    		   if (c == 'n'){
 	        	    			   getChar();
-	        	    			   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   if (isPunctuation())
 	        	    				   return token=Tokens.THEN;
 	        	    		   }
 	        	    	   }
@@ -246,8 +325,21 @@ public class Lexer {
 	          		    	   getChar();
 	          		    	   if (c == 'l'){
 	          		    		   getChar();
-	          		    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   if (isPunctuation())
 	          		    			   return token=Tokens.TAIL;
+	          		    	   }
+	          		       }
+
+	        	       } else if (c == 'r'){
+	          	    	   getChar();
+	          		       if (c == 'u'){
+	          		    	   getChar();
+	          		    	   if (c == 'e'){
+	          		    		   getChar();
+		        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   if (isPunctuation())
+	          		    			   return token=Tokens.BOOLEAN;
 	          		    	   }
 	          		       }
 
@@ -265,7 +357,8 @@ public class Lexer {
 	        	    			   getChar();
 	        	    			   if (c == 'e'){
 	        	    				   getChar();
-	        	    			   	   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+			        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+			        	    		   if (isPunctuation())
 	        	    					   return token=Tokens.WHILE;
 	        	    			   }
 	        	    			   
@@ -279,7 +372,8 @@ public class Lexer {
 	        	       getChar();
 	        	       if (c == 'o'){
 	        	    	   getChar();
-	        	    	   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+        	    		   if (isPunctuation())
 	        	    		   return token=Tokens.DO;
 	        	       } 
 	        	       ContinueGetID();
@@ -292,7 +386,8 @@ public class Lexer {
 	        	    	   if (c == 'l')
 	        	    	   {
 	        	    		   getChar();
-	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   if (isPunctuation())
 	        	    			   return token=Tokens.NIL;
 	        	    	   }
 	        	       } else if (c == 'o'){
@@ -300,7 +395,8 @@ public class Lexer {
 	        	    	   if (c == 't')
 	        	    	   {
 	        	    		   getChar();
-	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   if (isPunctuation())
 	        	    			   return token=Tokens.NOT;
 	        	    	   }
 	        	       }
@@ -314,7 +410,8 @@ public class Lexer {
 	        	    	   if (c == 'd')
 	        	    	   {
 	        	    		   getChar();
-	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   if (isPunctuation())
 	        	    			   return token=Tokens.SND;
 	        	    	   }
 	        	       } 
@@ -332,7 +429,8 @@ public class Lexer {
 		        	    	   if (c == 'd')
 		        	    	   {
 		        	    		   getChar();
-		        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+		        	    		   if (isPunctuation())
 		        	    			   return token=Tokens.HEAD;
 		        	    	   }
 	        	    	   }
@@ -347,7 +445,8 @@ public class Lexer {
 	        	    	   if (c == 'd')
 	        	    	   {
 	        	    		   getChar();
-	        	    		   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+	        	    		   if (isPunctuation())
 	        	    			   return token=Tokens.AND;
 	        	    	   }
 	        	       } 
@@ -358,11 +457,16 @@ public class Lexer {
 	        	       getChar();
 	        	       if (c == 'r'){
 	        	    	   getChar();
-	        	    	   if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+        	    		   //if ( c==' ' || c=='\n' || c=='\t' || c=='\r' || c == '\f')
+        	    		   if (isPunctuation())
 	        	    		   return token=Tokens.OR;
 	        	       } 
 	        	       ContinueGetID();
 	        	       return token=Tokens.ID;
+		        case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':  // positive integer
+		        	   yylval = "";
+		        	   ContinueGetInteger();
+		        	   return token=Tokens.INTEGER;		        	   
 		        default  : 
 		        	   yylval="";
 	        	       ContinueGetID();
