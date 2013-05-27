@@ -1,4 +1,4 @@
-// Output created by jacc on Mon May 27 20:44:47 CST 2013
+// Output created by jacc on Mon May 27 23:29:43 CST 2013
 
 
 class Parser implements Tokens {
@@ -7,15 +7,15 @@ class Parser implements Tokens {
     private int yysp = 0;
     private int[] yyst;
     protected int yyerrno = (-1);
-    private int[] yysv;
-    private int yyrv;
+    private String[] yysv;
+    private String yyrv;
 
     public boolean parse() {
         int yyn = 0;
         yysp = 0;
         yyst = new int[yyss];
-        yysv = new int[yyss];
-        yytok = (token
+        yysv = new String[yyss];
+        yytok = (Interpreter.lexer.token
                  );
     loop:
         for (;;) {
@@ -67,9 +67,9 @@ class Parser implements Tokens {
 
                 case 4:
                     yyst[yysp] = 4;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -86,9 +86,9 @@ class Parser implements Tokens {
 
                 case 5:
                     yyst[yysp] = 5;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -99,9 +99,9 @@ class Parser implements Tokens {
 
                 case 6:
                     yyst[yysp] = 6;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -117,9 +117,9 @@ class Parser implements Tokens {
 
                 case 7:
                     yyst[yysp] = 7;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -130,9 +130,9 @@ class Parser implements Tokens {
 
                 case 8:
                     yyst[yysp] = 8;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -149,9 +149,9 @@ class Parser implements Tokens {
 
                 case 9:
                     yyst[yysp] = 9;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -162,9 +162,9 @@ class Parser implements Tokens {
 
                 case 10:
                     yyst[yysp] = 10;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -181,9 +181,9 @@ class Parser implements Tokens {
 
                 case 11:
                     yyst[yysp] = 11;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -199,9 +199,9 @@ class Parser implements Tokens {
 
                 case 12:
                     yyst[yysp] = 12;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -218,9 +218,9 @@ class Parser implements Tokens {
 
                 case 13:
                     yyst[yysp] = 13;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -231,9 +231,9 @@ class Parser implements Tokens {
 
                 case 14:
                     yyst[yysp] = 14;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -250,9 +250,9 @@ class Parser implements Tokens {
 
                 case 15:
                     yyst[yysp] = 15;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -263,9 +263,9 @@ class Parser implements Tokens {
 
                 case 16:
                     yyst[yysp] = 16;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -276,9 +276,9 @@ class Parser implements Tokens {
 
                 case 17:
                     yyst[yysp] = 17;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -289,9 +289,9 @@ class Parser implements Tokens {
 
                 case 18:
                     yyst[yysp] = 18;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -302,9 +302,9 @@ class Parser implements Tokens {
 
                 case 19:
                     yyst[yysp] = 19;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -324,9 +324,9 @@ class Parser implements Tokens {
 
                 case 21:
                     yyst[yysp] = 21;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -337,9 +337,9 @@ class Parser implements Tokens {
 
                 case 22:
                     yyst[yysp] = 22;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -350,9 +350,9 @@ class Parser implements Tokens {
 
                 case 23:
                     yyst[yysp] = 23;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -363,9 +363,9 @@ class Parser implements Tokens {
 
                 case 24:
                     yyst[yysp] = 24;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -376,9 +376,9 @@ class Parser implements Tokens {
 
                 case 25:
                     yyst[yysp] = 25;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -389,9 +389,9 @@ class Parser implements Tokens {
 
                 case 26:
                     yyst[yysp] = 26;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -402,9 +402,9 @@ class Parser implements Tokens {
 
                 case 27:
                     yyst[yysp] = 27;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -415,9 +415,9 @@ class Parser implements Tokens {
 
                 case 28:
                     yyst[yysp] = 28;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -428,9 +428,9 @@ class Parser implements Tokens {
 
                 case 29:
                     yyst[yysp] = 29;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -441,9 +441,9 @@ class Parser implements Tokens {
 
                 case 30:
                     yyst[yysp] = 30;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -454,9 +454,9 @@ class Parser implements Tokens {
 
                 case 31:
                     yyst[yysp] = 31;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -467,9 +467,9 @@ class Parser implements Tokens {
 
                 case 32:
                     yyst[yysp] = 32;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -489,9 +489,9 @@ class Parser implements Tokens {
 
                 case 34:
                     yyst[yysp] = 34;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -511,9 +511,9 @@ class Parser implements Tokens {
 
                 case 36:
                     yyst[yysp] = 36;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -547,9 +547,9 @@ class Parser implements Tokens {
 
                 case 39:
                     yyst[yysp] = 39;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -655,9 +655,9 @@ class Parser implements Tokens {
 
                 case 49:
                     yyst[yysp] = 49;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -668,9 +668,9 @@ class Parser implements Tokens {
 
                 case 50:
                     yyst[yysp] = 50;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -681,9 +681,9 @@ class Parser implements Tokens {
 
                 case 51:
                     yyst[yysp] = 51;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -694,9 +694,9 @@ class Parser implements Tokens {
 
                 case 52:
                     yyst[yysp] = 52;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -707,9 +707,9 @@ class Parser implements Tokens {
 
                 case 53:
                     yyst[yysp] = 53;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -729,9 +729,9 @@ class Parser implements Tokens {
 
                 case 55:
                     yyst[yysp] = 55;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -748,9 +748,9 @@ class Parser implements Tokens {
 
                 case 56:
                     yyst[yysp] = 56;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -814,9 +814,9 @@ class Parser implements Tokens {
 
                 case 62:
                     yyst[yysp] = 62;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -850,9 +850,9 @@ class Parser implements Tokens {
 
                 case 64:
                     yyst[yysp] = 64;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -863,9 +863,9 @@ class Parser implements Tokens {
 
                 case 65:
                     yyst[yysp] = 65;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -876,9 +876,9 @@ class Parser implements Tokens {
 
                 case 66:
                     yyst[yysp] = 66;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -895,9 +895,9 @@ class Parser implements Tokens {
 
                 case 67:
                     yyst[yysp] = 67;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -932,9 +932,9 @@ class Parser implements Tokens {
 
                 case 70:
                     yyst[yysp] = 70;
-                    yysv[yysp] = (yylval
+                    yysv[yysp] = (Interpreter.lexer.yylval
                                  );
-                    yytok = (yylex()
+                    yytok = (Interpreter.lexer.yylex()
                             );
                     if (++yysp>=yyst.length) {
                         yyexpand();
@@ -964,7 +964,7 @@ class Parser implements Tokens {
 
     protected void yyexpand() {
         int[] newyyst = new int[2*yyst.length];
-        int[] newyysv = new int[2*yyst.length];
+        String[] newyysv = new String[2*yyst.length];
         for (int i=0; i<yyst.length; i++) {
             newyyst[i] = yyst[i];
             newyysv[i] = yysv[i];
@@ -2868,77 +2868,5 @@ class Parser implements Tokens {
     protected String[] yyerrmsgs = {
     };
 
-
-  private void yyerror(String msg) {
-    System.out.println("ERROR: " + msg);
-    System.exit(1);
-  }
-
-  private int c;
-
-  /** Read a single input character from standard input.
-   */
-  private void nextChar() {
-    if (c>=0) {
-      try {
-        c = System.in.read();
-      } catch (Exception e) {
-        c = (-1);
-      }
-    }
-  }
-
-  int token;
-  int yylval;
-
-  /** Read the next token and return the
-   *  corresponding integer code.
-   */
-  int yylex() {
-    for (;;) {
-      // Skip whitespace
-      while (c==' ' || c=='\n' || c=='\t' || c=='\r') {
-        nextChar();
-      }
-      if (c<0) {
-        return (token=ENDINPUT);
-      }
-      switch (c) {
-        case '+' : nextChar();
-                   return token='+';
-        case '-' : nextChar();
-                   return token='-';
-        case '*' : nextChar();
-                   return token='*';
-        case '/' : nextChar();
-                   return token='/';
-        case '(' : nextChar();
-                   return token='(';
-        case ')' : nextChar();
-                   return token=')';
-        case ';' : nextChar();
-                   return token=';';
-        default  : if (Character.isDigit((char)c)) {
-                     int n = 0;
-                       do {
-                         n = 10*n + (c - '0');
-                         nextChar();
-                       } while (Character.isDigit((char)c));
-                       yylval = n;
-                       return token=INTEGER;
-                     } else {
-                       yyerror("Illegal character "+c);
-                       nextChar();
-                     }
-      }
-    }
-  }
-
-  public static void main(String[] args) {
-    Calc calc = new Calc();
-    calc.nextChar(); // prime the character input stream
-    calc.yylex();    // prime the token input stream
-    calc.parse();    // parse the input
-  }
 
 }
