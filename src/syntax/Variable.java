@@ -1,5 +1,7 @@
 package syntax;
 
+import symbol.SymbolTable;
+
 public class Variable extends Expression{
 	String name;
 	
@@ -11,6 +13,10 @@ public class Variable extends Expression{
 	}
 	
 	public Object eval() {
-		return null;
+		return SymbolTable.get(this);
+	}
+	
+	public boolean equal(Variable v) {
+		return name.equals(v.name);
 	}
 }
