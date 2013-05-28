@@ -11,6 +11,6 @@ public class BoolValue extends Value{
 	}
 	
 	public Object eval() {
-		return null;
+		return value;
 	}
 }

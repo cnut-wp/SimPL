@@ -62,6 +62,9 @@ expr : LET ID EQ expr IN  expseq END { $$ = new LetInEnd(new Variable($2),$4,$6)
 	|  INTEGER {$$ = new IntValue($1); }
 	|  UMINUS expr {$$ = new UnaryOperation(UnaryOperation.UnaryOperator.negative, $2);}
 	|  NOT expr {$$ = new UnaryOperation(UnaryOperation.UnaryOperator.not, $2);}
+	|  IF expr THEN expr %prec LOW {$$ = new IfThenElse($2,$4); }
+	|  IF expr THEN expr ELSE expr {$$ = new IfThenElse($2,$4, $6);}
+	|  WHILE expr DO expr END {$$ = new WhileDoEnd($2,$4);}
     ;
 expseq : expr {$$=$1;}
 	|    expr SEMICOLON expseq {$$ = new Sequence($1,$3);}

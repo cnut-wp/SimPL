@@ -14,6 +14,7 @@ public class IntValue extends Value{
 	}
 	
 	public Object eval() {
-		return null;
+		if (isUndef) return null;
+		else return value;
 	}
 }
