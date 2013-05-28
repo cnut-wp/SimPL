@@ -41,6 +41,7 @@ prog : expr { System.out.println($1); };
 expr : LET ID '=' expr IN  expseq END { $$ = new LetInEnd(new Variable($2),$4,$6);}
 	|  expr '+' expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.plus , $3);} 
 	|  expr '-' expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.minus, $3);}
+	|  expr '*' expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.times, $3);}
 	|  INTEGER {$$ = new IntValue($1); }
      ;
 expseq : expr {$$=$1;};
