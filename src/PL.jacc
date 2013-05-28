@@ -8,16 +8,19 @@
 
 %class     Parser
 %interface Tokens
-%semantic  String : Interpreter.lexer.yylval
+%semantic  Object : Interpreter.lexer.yylval
 %get       Interpreter.lexer.token
 %next      Interpreter.lexer.yylex()
 
+%{
+import syntax.*;
+%}
 
 %token '(' ')' CONS ';' ','
 %token '+' '-' '*' '/' '=' '>' '<' AND OR
 %token '~' NOT
 
-%token SKIP
+%token ASSIGN
 
 %token IF THEN ELSE
 %token LET IN END
@@ -32,47 +35,19 @@
 %left  '*' '/'
 
 %%
-e : ID
-  | v
-  | '(' e e ')'
-  | e bop e
-  | uop e
-  | LET ID '=' e IN e END
-  | IF e THEN e ELSE e
-  | e '=' e
-  | e ';' e
-  | WHILE e DO e END
-  | FST e
-  | SND e
-  | HEAD e
-  | TAIL e
-  | '(' e ')'
-  ;
- 
-v : INTEGER
-  | BOOLEAN
-  | NIL
-  | SKIP
-  | FUN ID LAMDA e
-  | '(' v ',' v ')'
-  | v CONS v
-  ;
 
-bop : '+'
-    | '-'
-	| '*'
-	| '/'
-	| '='
-	| '>'
-	| '<'
-	| AND
-	| OR
-	| CONS
-	| ','
-	;
+prog : expr { System.out.println($1); };
 
-uop : '~'
-    | NOT
-	;
+expr : LET ID '=' expr IN  expseq END { $$ = new LetInEnd(new Variable($2),$4,$6);}
+	|  expr '+' expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.plus , $3);} 
+	|  expr '-' expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.minus, $3);}
+	|  INTEGER {$$ = new IntValue($1); }
+     ;
+expseq : expr {$$=$1;};
 
 %%
+
+private void yyerror(String msg) {
+	System.out.println(msg);
+	System.exit(1);
+}

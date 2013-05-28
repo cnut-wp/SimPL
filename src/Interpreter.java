@@ -6,8 +6,11 @@ import java.io.InputStream;
 public class Interpreter {
 	public static boolean shellMode = false;
 	public static Lexer lexer = null;
-	
+	static String tokenName[] = {"ENDINPUT","AND", "ASSIGN","BOOLEAN","CONS","DO",
+		"ELSE","END","FST","FUN","HEAD","ID","IF","IN","INTEGER","LAMDA","LET","NIL",
+        "NOT","OR","SKIP","SND","TAIL","THEN","WHILE","error"};
 
+ 
 	private static void printUsage(String args[]) {
 		System.out.println("SimPL -f src  or  SimPL -s");
 		System.out.println("Your argument: ");
@@ -47,7 +50,7 @@ public class Interpreter {
 				if (Lexer.token == Tokens.ID || Lexer.token == Tokens.BOOLEAN || Lexer.token == Tokens.INTEGER)
 					System.out.println(Lexer.token + " " + Lexer.yylval);
 				else if (Lexer.token < 25)
-					System.out.println(Lexer.token + " " + Tokens.args[Lexer.token]);
+					System.out.println(Lexer.token + " " + tokenName[Lexer.token]);
 				else 
 					System.out.println(Lexer.token + " " + (char)(Lexer.token));
 			}

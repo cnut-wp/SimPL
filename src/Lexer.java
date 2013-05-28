@@ -196,7 +196,7 @@ public class Lexer {
 		        	       if (c == '=')
 		        	       {
 		        	    	   nextChar();
-		        	    	   return token = Tokens.ASSIGNMENT;
+		        	    	   return token = Tokens.ASSIGN;
 		        	       }else if (c == ':'){
 		        	    	   nextChar();
 		        	    	   return token = Tokens.CONS;

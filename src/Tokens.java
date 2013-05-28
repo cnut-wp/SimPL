@@ -1,31 +1,32 @@
-// Output created by jacc on Mon May 27 23:29:43 CST 2013
+// Output created by jacc on Tue May 28 13:36:14 CST 2013
 
 interface Tokens {
     int ENDINPUT = 0;
     int AND = 1;
-    int BOOLEAN = 2;
-    int CONS = 3;
-    int DO = 4;
-    int ELSE = 5;
-    int END = 6;
-    int FST = 7;
-    int FUN = 8;
-    int HEAD = 9;
-    int ID = 10;
-    int IF = 11;
-    int IN = 12;
-    int INTEGER = 13;
-    int LAMDA = 14;
-    int LET = 15;
-    int NIL = 16;
-    int NOT = 17;
-    int OR = 18;
-    int SKIP = 19;
-    int SND = 20;
-    int TAIL = 21;
-    int THEN = 22;
-    int WHILE = 23;
-    int error = 24;
+    int ASSIGN = 2;
+    int BOOLEAN = 3;
+    int CONS = 4;
+    int DO = 5;
+    int ELSE = 6;
+    int END = 7;
+    int FST = 8;
+    int FUN = 9;
+    int HEAD = 10;
+    int ID = 11;
+    int IF = 12;
+    int IN = 13;
+    int INTEGER = 14;
+    int LAMDA = 15;
+    int LET = 16;
+    int NIL = 17;
+    int NOT = 18;
+    int OR = 19;
+    int SKIP = 20;
+    int SND = 21;
+    int TAIL = 22;
+    int THEN = 23;
+    int WHILE = 24;
+    int error = 25;
     // '(' (code=40)
     // ')' (code=41)
     // '*' (code=42)
