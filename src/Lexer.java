@@ -4,7 +4,9 @@ import java.util.regex.Pattern;
 
 public class Lexer {
 	String SPERATORSET = "[:;()+-/=><~\n\f\r\t /*]";
+	String SPERATORSET_SHELL = "[$:;()+-/=><~\n\f\r\t /*]";
     Pattern SPERATOR = Pattern.compile(SPERATORSET);
+    Pattern SPERATOR_SHELL = Pattern.compile(SPERATORSET_SHELL);
 	public static int token;
 	public static String yylval;;
 
@@ -29,7 +31,11 @@ public class Lexer {
 		if (c < 0)
 			return false;
 		s += (char)c;
-		Matcher matcher = SPERATOR.matcher(s);
+		Matcher matcher = null;
+		if (Interpreter.shellMode)
+			matcher = SPERATOR_SHELL.matcher(s);
+		else
+			matcher = SPERATOR.matcher(s);
 		return matcher.matches();
 	}
 	/*
@@ -73,11 +79,15 @@ public class Lexer {
 				break;
 			char tmp = (char)c;
 			s += tmp;
-			Matcher matcher = SPERATOR.matcher(s);
+			Matcher matcher = null;
+			if (Interpreter.shellMode)
+				matcher = SPERATOR_SHELL.matcher(s);
+			else
+				matcher = SPERATOR.matcher(s);
 			if (matcher.matches() == true)
 				break;
 			if (!(tmp>='0' && tmp<='9'))
-				yyerror("get an integer, here should be a digit, but here is " + tmp);
+				yyerror("get an integer, here should be a digit, but it is " + tmp);
 			getChar();
 		}while(true);
 	}
@@ -92,16 +102,20 @@ public class Lexer {
 				break;
 			char tmp = (char)c;
 			s += tmp;
-			Matcher matcher = SPERATOR.matcher(s);
+			Matcher matcher = null;
+			if (Interpreter.shellMode)
+				matcher = SPERATOR_SHELL.matcher(s);
+			else
+				matcher = SPERATOR.matcher(s);
 			if (matcher.matches() == true)
 				break;
 			if (!((tmp >= 'a' && tmp <= 'z') ||(tmp>='0' && tmp<='9')))
-				yyerror("get an ID, here should be a valid char, but here is " + tmp);
+				yyerror("get an ID, here should be a valid char, but it is " + tmp);
 			getChar();
 		}while(true);
 		char first = yylval.charAt(0);
 		if (!(first >= 'a' && first <= 'z')){
-			yyerror("get an ID, the fisrt char should be a valid char, but here is " + first);
+			yyerror("get an ID, the fisrt char should be a valid char, but it is " + first);
 		}
 	}
 	
