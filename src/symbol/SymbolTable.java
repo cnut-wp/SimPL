@@ -20,7 +20,7 @@ public class SymbolTable {
 	}
 	public static Object get(Variable variable) {
 		// TODO Auto-generated method stub
-		for (int i = table.size()-1; i>=0; i++)
+		for (int i = table.size()-1; i>=0; i--)
 			if (variable.equal(table.get(i).name)) return table.get(i).value;
 		return null;
 	}

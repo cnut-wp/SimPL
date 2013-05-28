@@ -29,7 +29,7 @@ public class Lexer {
 	boolean isPunctuation(){
 		String s = "";
 		if (c < 0)
-			return false;
+			return true;
 		s += (char)c;
 		Matcher matcher = null;
 		if (Interpreter.shellMode)
