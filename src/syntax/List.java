@@ -7,4 +7,8 @@ public class List extends Expression{
 	public String toString(){
 		return "[" + head.toString() + ", " + tail.toString() + "]";
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

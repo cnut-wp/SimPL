@@ -7,4 +7,8 @@ public class WhileDoEnd extends Expression{
 	public String toString(){
 		return "while " + condition.toString() + " do " + body.toString() + " end";
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

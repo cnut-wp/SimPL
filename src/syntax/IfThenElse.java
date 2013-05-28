@@ -8,4 +8,8 @@ public class IfThenElse extends Expression{
 	public String toString(){
 		return "if " + condition.toString() + " then " + thenClause.toString() + " else " + elseClause.toString();
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

@@ -7,4 +7,8 @@ public class ListValue extends Value{
 	public String toString(){
 		return "[" + head.toString() + ", " + tail.toString() + "]";
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

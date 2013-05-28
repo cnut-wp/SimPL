@@ -40,4 +40,97 @@ public class BinaryOperation extends Expression{
 		return e1.toString() + " " + operator + " " + e2.toString();
 	}
 	
+	public Object eval() {
+		Object o1 = e1.eval();
+		Object o2 = e2.eval();
+		if (o1 == null || o2 == null) {
+			System.out.println("Runtime Error!");
+		}
+		
+		switch(this.op){
+		case plus:
+			try {
+				int i1 = (Integer)o1;
+				int i2 = (Integer)o2;
+				return i1+i2;
+			}catch (Exception e) {
+				System.out.println("Type Error!");
+			}			
+			break;
+		case minus:
+			try {
+				int i1 = (Integer)o1;
+				int i2 = (Integer)o2;
+				return i1-i2;
+			}catch (Exception e) {
+				System.out.println("Type Error!");
+			}			
+			break;
+		case times:
+			try {
+				int i1 = (Integer)o1;
+				int i2 = (Integer)o2;
+				return i1*i2;
+			}catch (Exception e) {
+				System.out.println("Type Error!");
+			}			
+			break;
+		case devide:
+			try {
+				int i1 = (Integer)o1;
+				int i2 = (Integer)o2;
+				return i1/i2;
+			}catch (Exception e) {
+				System.out.println("Type Error!");
+			}			
+			break;
+		case biggerThan:
+			try {
+				int i1 = (Integer)o1;
+				int i2 = (Integer)o2;
+				return i1>i2;
+			}catch (Exception e) {
+				System.out.println("Type Error!");
+			}			
+			break;
+		case lessThan:
+			try {
+				int i1 = (Integer)o1;
+				int i2 = (Integer)o2;
+				return i1<i2;
+			}catch (Exception e) {
+				System.out.println("Type Error!");
+			}			
+			break;
+		case equal:
+			try {
+				int i1 = (Integer)o1;
+				int i2 = (Integer)o2;
+				return i1==i2;
+			}catch (Exception e) {
+				System.out.println("Type Error!");
+			}			
+			break;
+		case and:
+			try {
+				boolean i1 = (Boolean)o1;
+				boolean i2 = (Boolean)o2;
+				return i1&&i2;
+			}catch (Exception e) {
+				System.out.println("Type Error!");
+			}			
+			break;
+		case or:
+			try {
+				boolean i1 = (Boolean)o1;
+				boolean i2 = (Boolean)o2;
+				return i1||i2;
+			}catch (Exception e) {
+				System.out.println("Type Error!");
+			}			
+			break;
+		}
+		
+		return null;
+	}
 }

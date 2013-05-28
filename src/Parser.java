@@ -1,4 +1,4 @@
-// Output created by jacc on Tue May 28 15:01:55 CST 2013
+// Output created by jacc on Tue May 28 15:45:00 CST 2013
 
 
 import syntax.*;
@@ -1048,7 +1048,7 @@ class Parser implements Tokens {
     }
 
     private int yyr1() { // prog : expr
-        { System.out.println(yysv[yysp-1].eval()); }
+        { System.out.println(((Expression)yysv[yysp-1]).eval()); }
         yysv[yysp-=1] = yyrv;
         return 1;
     }

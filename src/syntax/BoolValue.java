@@ -9,4 +9,8 @@ public class BoolValue extends Value{
 		else
 			return "false";
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

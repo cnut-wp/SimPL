@@ -6,4 +6,8 @@ public class Head extends Expression{
 	public String toString(){
 		return "head " + e.toString();
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

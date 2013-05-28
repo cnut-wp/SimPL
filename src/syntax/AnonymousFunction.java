@@ -7,4 +7,8 @@ public class AnonymousFunction extends Value{
 	public String toString(){
 		return "fun " + arg.toString() + " -> " + body.toString();
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

@@ -13,8 +13,7 @@ public class IntValue extends Value{
 			return String.valueOf(value);
 	}
 	
-    Object eval() {
-    	if (isUndef) return null;
-    	else return value;
-    }
+	public Object eval() {
+		return null;
+	}
 }

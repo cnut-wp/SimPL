@@ -14,4 +14,8 @@ public class LetInEnd extends Expression{
 		definition = (Expression) def;
 		this.body = (Expression) body; 
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

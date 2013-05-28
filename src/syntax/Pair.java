@@ -7,4 +7,8 @@ public class Pair extends Expression{
 	public String toString(){
 		return "(" + e1.toString() + ", " + e2.toString() + ")";
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

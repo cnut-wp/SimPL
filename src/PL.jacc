@@ -47,7 +47,7 @@ import syntax.*;
 
 %%
 
-prog : expr { System.out.println($1.eval()); };
+prog : expr { System.out.println(((Expression)$1).eval()); };
 
 expr : LET ID EQ expr IN  expseq END { $$ = new LetInEnd(new Variable($2),$4,$6);}
 	|  expr PLUS expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.plus , $3);} 

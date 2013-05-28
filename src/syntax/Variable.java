@@ -9,4 +9,8 @@ public class Variable extends Expression{
 	public String toString(){
 		return name;
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

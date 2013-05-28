@@ -6,4 +6,8 @@ public class Tail extends Expression{
 	public String toString(){
 		return "tail " + e.toString();
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

@@ -7,4 +7,8 @@ public class Application extends Expression{
 	public String toString(){
 		return "(" + func.toString() + " " + param.toString() + ")";
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

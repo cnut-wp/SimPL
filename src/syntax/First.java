@@ -6,4 +6,8 @@ public class First extends Expression{
 	public String toString(){
 		return "fst " + e.toString();
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }

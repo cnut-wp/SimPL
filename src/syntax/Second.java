@@ -6,4 +6,8 @@ public class Second extends Expression{
 	public String toString(){
 		return "snd " + e.toString();
 	}
+	
+	public Object eval() {
+		return null;
+	}
 }
