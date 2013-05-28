@@ -5,7 +5,7 @@ public class IntValue extends Value{
 	int value;
 	public IntValue(Object i) {
 		value =  Integer.parseInt((String)i);
-		isUndef = true;
+		isUndef = false;
 	}
 	public String toString(){
 		if(isUndef)
