@@ -6,7 +6,9 @@ import java.io.InputStream;
 public class Interpreter {
 	public static boolean shellMode = false;
 	public static Lexer lexer = null;
-	static String tokenName[] = {"ENDINPUT","AND", "ASSIGN","BOOLEAN", "COMMA", "CONS", 
+	public static Parser parser = null;
+	
+	public static String tokenName[] = {"ENDINPUT","AND", "ASSIGN","BOOLEAN", "COMMA", "CONS", 
 		"DEVIDE", "DO", "ELSE","END","EQ", "FST","FUN","GT","HEAD","ID","IF","IN","INTEGER",
 		"LAMDA","LET","LOW","LPAREN", "LT", "MINUS","NIL","NOT","OR","PLUS","RPAREN", "SEMICOLON",
 		"SKIP","SND","TAIL","THEN", "TIMES", "UMINUS", "WHILE","error"};
@@ -45,7 +47,11 @@ public class Interpreter {
 			printUsage(args);
 		}
 		lexer.nextChar();
+		lexer.yylex();
+		parser = new Parser();
+		parser.parse();
 
+		/*
 		for (;;) {
 			if (lexer.yylex() > 0){
 				if (Lexer.token == Tokens.ID || Lexer.token == Tokens.BOOLEAN || Lexer.token == Tokens.INTEGER)
@@ -58,6 +64,7 @@ public class Interpreter {
 			else
 				break;
 		}
+		*/
 		return;
 	}
 

@@ -1174,7 +1174,13 @@ class Parser implements Tokens {
 
 
 private void yyerror(String msg) {
-        System.out.println(msg);
+	    String prefix = "[line:" + Interpreter.lexer.line+ " TokenID:" + Interpreter.tokenName[Lexer.token];
+	    if (Lexer.token == Tokens.ID || Lexer.token == Tokens.BOOLEAN || Lexer.token == Tokens.INTEGER)
+	    {
+	    	prefix += " " +Lexer.yylval;
+	    }
+	    prefix += "]\t";
+        System.out.println(prefix+msg);
         System.exit(1);
 }
 

@@ -9,8 +9,8 @@ public class Lexer {
 	public static String yylval;;
 
 	private InputStream in;
-	private int c;
-    private int line = 1;
+	private static int c;
+    public static int line = 1;
 	
 
 	@SuppressWarnings("unused")
@@ -183,6 +183,8 @@ public class Lexer {
     				       return token=Tokens.COMMA;
 		        case '~' :  // negative Integer
 		        	       nextChar();
+		        	       return token=Tokens.UMINUS;
+		        		   /*
 		        		   if (Character.isDigit((char)c)){
 		        			   yylval = "-";
 		        			   ContinueGetInteger();
@@ -190,6 +192,7 @@ public class Lexer {
 		        		   } else {
 		        			   yyerror("the char following ~ should be digit value");
 		        		   }
+		        		   */
 			               
 		        case ':' :  // := assignment  :: cons
 		        	       nextChar();
