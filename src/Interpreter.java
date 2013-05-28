@@ -6,9 +6,10 @@ import java.io.InputStream;
 public class Interpreter {
 	public static boolean shellMode = false;
 	public static Lexer lexer = null;
-	static String tokenName[] = {"ENDINPUT","AND", "ASSIGN","BOOLEAN","CONS","DO",
-		"ELSE","END","FST","FUN","HEAD","ID","IF","IN","INTEGER","LAMDA","LET","NIL",
-        "NOT","OR","SKIP","SND","TAIL","THEN","WHILE","error"};
+	static String tokenName[] = {"ENDINPUT","AND", "ASSIGN","BOOLEAN", "COMMA", "CONS", 
+		"DEVIDE", "DO", "ELSE","END","EQ", "FST","FUN","GT","HEAD","ID","IF","IN","INTEGER",
+		"LAMDA","LET","LOW","LPAREN", "LT", "MINUS","NIL","NOT","OR","PLUS","RPAREN", "SEMICOLON",
+		"SKIP","SND","TAIL","THEN", "TIMES", "UMINUS", "WHILE","error"};
 
  
 	private static void printUsage(String args[]) {

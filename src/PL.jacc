@@ -16,34 +16,51 @@
 import syntax.*;
 %}
 
-%token '(' ')' CONS ';' ','
-%token '+' '-' '*' '/' '=' '>' '<' AND OR
-%token '~' NOT
+%token LPAREN RPAREN  CONS COMMA SEMICOLON
+ PLUS MINUS TIMES DEVIDE EQ LT GT AND OR
+ UMINUS NOT
 
-%token ASSIGN
+ ASSIGN
 
-%token IF THEN ELSE
-%token LET IN END
-%token WHILE DO
-%token FST SND HEAD TAIL LAMDA
+ IF THEN ELSE
+ LET IN END
+ WHILE DO
+ FST SND HEAD TAIL LAMDA
 
-%token INTEGER BOOLEAN NIL SKIP FUN
+ INTEGER BOOLEAN NIL SKIP FUN
 
-%token ID
+ ID
 
-%left  '+' '-'
-%left  '*' '/'
 
+%left SEMICOLON
+%nonassoc DO
+%nonassoc FUN
+%nonassoc LOW
+%nonassoc  ELSE
+%right ASSIGN
+%left OR
+%left AND
+%left EQ LT GT 
+%left  PLUS MINUS
+%left  TIMES DEVIDE
+%nonassoc UMINUS
 %%
 
 prog : expr { System.out.println($1); };
 
-expr : LET ID '=' expr IN  expseq END { $$ = new LetInEnd(new Variable($2),$4,$6);}
-	|  expr '+' expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.plus , $3);} 
-	|  expr '-' expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.minus, $3);}
-	|  expr '*' expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.times, $3);}
+expr : LET ID EQ expr IN  expseq END { $$ = new LetInEnd(new Variable($2),$4,$6);}
+	|  expr PLUS expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.plus , $3);} 
+	|  expr MINUS expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.minus, $3);}
+	|  expr TIMES expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.times, $3);}
+	|  expr DEVIDE expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.devide, $3);}
+	|  expr GT expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.biggerThan, $3);}
+	|  expr LT expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.lessThan, $3);}
+	|  expr EQ expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.equal, $3);}
+	|  expr AND expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.and, $3);}
+	|  expr OR expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.or, $3);}
 	|  INTEGER {$$ = new IntValue($1); }
-     ;
+	|  UMINUS expr {$$ = new UnaryOperation(UnaryOperation.UnaryOperator.negative, $2);}
+    ;
 expseq : expr {$$=$1;};
 
 %%

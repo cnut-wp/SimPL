@@ -125,7 +125,7 @@ public class Lexer {
 		        	      }
 		        case '+' : // '+'
 		        	       nextChar();
-		        	       return token='+';
+		        	       return token=Tokens.PLUS;
 		        	       /* positive number
 		        	        if (Character.isDigit((char)c)){
 		        	    	   yylval = "";
@@ -145,14 +145,14 @@ public class Lexer {
 				        	   ContinueGetID();
 				        	   return token=Tokens.INTEGER; */
 		        	       } else {
-		        	    	   return token='-';
+		        	    	   return token=Tokens.MINUS;
 		        	       } 
 		        case '*' : nextChar();
-		                   return token='*';
+		                   return token=Tokens.TIMES;
 		        case '/' :  // '/' and /*  */
 		        	       nextChar();
 		             	   if (c != '*'){
-		        			   return token='/'; 
+		        			   return token=Tokens.DEVIDE; 
 		        		   }
 		        		   while(true){
 		        				nextChar();
@@ -168,19 +168,19 @@ public class Lexer {
 		        			nextChar();
 		        			break;
 		        case '=' : nextChar();
-		        		   return token='=';
+		        		   return token=Tokens.EQ;
 		        case '>' : nextChar();
-	        		       return token='>';
+	        		       return token=Tokens.GT;
 		        case '<' : nextChar();
-	        		       return token='<';
+	        		       return token=Tokens.LT;
 		        case '(' : nextChar();
-		                   return token='(';
+		                   return token=Tokens.LPAREN;
 		        case ')' : nextChar();
-		                   return token=')';
+		                   return token=Tokens.RPAREN;
 		        case ';' : nextChar();
-		                   return token=';';
+		                   return token=Tokens.SEMICOLON;
 		        case ',' : nextChar();
-    				       return token=',';
+    				       return token=Tokens.COMMA;
 		        case '~' :  // negative Integer
 		        	       nextChar();
 		        		   if (Character.isDigit((char)c)){
