@@ -29,11 +29,12 @@ public class IfThenElse extends Expression{
 		}catch (Exception e) {
 			System.out.println("Type Error!");
 		}
-		if (b) thenClause.eval();
+		Object result = null;
+		if (b) result = thenClause.eval();
 		else {
-			if (elseClause != null) elseClause.eval();
+			if (elseClause != null) result = elseClause.eval();
 		}
-		return null;
+		return result;
 	}
 	
 }
