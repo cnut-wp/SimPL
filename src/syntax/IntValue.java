@@ -12,4 +12,9 @@ public class IntValue extends Value{
 		else
 			return String.valueOf(value);
 	}
+	
+    Object eval() {
+    	if (isUndef) return null;
+    	else return value;
+    }
 }
