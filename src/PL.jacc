@@ -61,6 +61,7 @@ expr : LET ID EQ expr IN  expseq END { $$ = new LetInEnd(new Variable($2),$4,$6)
 	|  expr OR expr { $$ = new BinaryOperation($1, BinaryOperation.BinaryOperator.or, $3);}
 	|  INTEGER {$$ = new IntValue($1); }
 	|  UMINUS expr {$$ = new UnaryOperation(UnaryOperation.UnaryOperator.negative, $2);}
+	|  BOOLEAN {$$ = new BoolValue($1); }
 	|  NOT expr {$$ = new UnaryOperation(UnaryOperation.UnaryOperator.not, $2);}
 	|  IF expr THEN expr %prec LOW {$$ = new IfThenElse($2,$4); }
 	|  IF expr THEN expr ELSE expr {$$ = new IfThenElse($2,$4, $6);}
