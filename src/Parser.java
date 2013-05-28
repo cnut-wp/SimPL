@@ -1,4 +1,4 @@
-// Output created by jacc on Tue May 28 18:04:53 CST 2013
+// Output created by jacc on Tue May 28 19:46:49 CST 2013
 
 
 import syntax.*;
@@ -1675,12 +1675,12 @@ class Parser implements Tokens {
 
 
 private void yyerror(String msg) {
-	    String prefix = "[line:" + Interpreter.lexer.line+ " TokenID:" + Interpreter.tokenName[Lexer.token];
-	    if (Lexer.token == Tokens.ID || Lexer.token == Tokens.BOOLEAN || Lexer.token == Tokens.INTEGER)
-	    {
-	    	prefix += " " +Lexer.yylval;
-	    }
-	    prefix += "]\t";
+            String prefix = "[line:" + Interpreter.lexer.line+ " TokenID:" + Interpreter.tokenName[Lexer.token];
+            if (Lexer.token == Tokens.ID || Lexer.token == Tokens.BOOLEAN || Lexer.token == Tokens.INTEGER)
+            {
+                prefix += " " +Lexer.yylval;
+            }
+            prefix += "]\t";
         System.out.println(prefix+msg);
         System.exit(1);
 }

@@ -4,7 +4,8 @@ public class IntValue extends Value{
 	boolean isUndef;
 	int value;
 	public IntValue(Object i) {
-		value = (Integer) i;
+		value =  Integer.parseInt((String)i);
+		isUndef = true;
 	}
 	public String toString(){
 		if(isUndef)
