@@ -67,6 +67,8 @@ expr : LET ID EQ expr IN  expseq END { $$ = new LetInEnd(new Variable($2),$4,$6)
 	|  IF expr THEN expr ELSE expr END {$$ = new IfThenElse($2,$4, $6);}
 	|  WHILE expr DO expr END {$$ = new WhileDoEnd($2,$4);}
 	|  ID {$$ = new Variable($1); }
+	|  FUN ID LAMDA expr {$$ = new AnonymousFunction(new Variable($2), $4);}
+	|  LPAREN expr expr RPAREN {$$ = new Application($2, $3);}
     ;
 expseq : expr {$$=$1;}
 	|    expr SEMICOLON expseq {$$ = new Sequence($1,$3);}

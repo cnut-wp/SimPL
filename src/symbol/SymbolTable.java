@@ -7,7 +7,7 @@ import syntax.*;
 public class SymbolTable {
 	static ArrayList<Entry> table = new ArrayList<Entry>();
 	
-	public static void push(Variable name,Object value) {
+	public static void push(Variable name, Object value) {
 		Entry e = new Entry(name , value);
 		table.add(e);
 	}
