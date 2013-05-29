@@ -6,6 +6,7 @@ public class Nil extends Value{
 	}
 	
 	public Object eval() {
-		return null;
+		//System.out.println("NIL!");
+		return this;
 	}
 }
