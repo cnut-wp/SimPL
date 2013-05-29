@@ -10,7 +10,7 @@ public class AnonymousFunction extends Value{
 	public SymbolTable localTable=null;
 	
 	public String toString(){
-		return "fun " + arg.toString() + " -> " + body.toString();
+		return "fun " + arg.toString() + " -> " + body.toString() + " under environment "+ localTable.toString()+ "";
 	}
 	private AnonymousFunction(){};
 	
@@ -29,19 +29,25 @@ public class AnonymousFunction extends Value{
 	 * you can't apply f2 to where should be f1
 	 */
 	public Object eval() {
-		AnonymousFunction result = new AnonymousFunction();
-		result.arg = this.arg;
-		result.body = this.body;
-		result.localTable = (SymbolTable) Interpreter.symbolTable.clone();
 		return this;
 	}
 	
 	public Object apply(Expression e){
-		int enter = Interpreter.symbolTable.getSize();
 		Object result = null;
-		Interpreter.symbolTable.push(arg, e.eval());
-		result = body.eval();
-		Interpreter.symbolTable.popTo(enter);
+		if ( body instanceof AnonymousFunction){
+			AnonymousFunction resultFun = new AnonymousFunction();
+			resultFun.arg = ((AnonymousFunction)body).arg;
+			resultFun.body = ((AnonymousFunction)body).body;
+			resultFun.localTable = (SymbolTable) ((AnonymousFunction)body).localTable.clone();
+			((AnonymousFunction)resultFun).localTable.push(arg, e.eval());
+			result = resultFun.eval();		
+		} else {
+			this.localTable.push(arg, e.eval());
+			SymbolTable tmp = Interpreter.symbolTable;
+			Interpreter.symbolTable = localTable;
+			result = body.eval();
+			Interpreter.symbolTable = tmp;
+		}
 		System.out.println("application apply: "+ result.toString());
 		return result;
 	}

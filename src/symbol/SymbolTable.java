@@ -39,6 +39,10 @@ public class SymbolTable implements Cloneable{
 		}
 		
 	}
+	
+	public String toString(){
+		return table.toString();
+	}
 }
 
 class Entry {
@@ -46,5 +50,9 @@ class Entry {
 	Object value;
 	public Entry(Variable n, Object v) {
 		name = n; value = v;
+	}
+	public String toString()
+	{
+		return name.toString()+"="+value.toString();
 	}
 }
