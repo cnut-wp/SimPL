@@ -1,14 +1,19 @@
 package syntax;
 
 public class PairValue extends Value{
-	Value e1;
-	Value e2;
+	Value first;
+	Value second;
 	
+	public PairValue(Value f, Value s) {
+		first = f;
+		second = s;
+	}
+
 	public String toString(){
-		return "(" + e1.toString() + ", " + e2.toString() + ")";
+		return "(" + first.toString() + ", " + second.toString() + ")";
 	}
 	
 	public Object eval() {
-		return null;
+		return this;
 	}
 }
