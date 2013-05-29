@@ -37,11 +37,11 @@ public class AnonymousFunction extends Value{
 	}
 	
 	public Object apply(Expression e){
-		int enter = localTable.getSize();
+		int enter = Interpreter.symbolTable.getSize();
 		Object result = null;
 		Interpreter.symbolTable.push(arg, e.eval());
 		result = body.eval();
-		localTable.popTo(enter);
+		Interpreter.symbolTable.popTo(enter);
 		System.out.println("application apply: "+ result.toString());
 		return result;
 	}

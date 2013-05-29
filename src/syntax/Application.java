@@ -21,7 +21,6 @@ public class Application extends Expression{
 		}catch (Exception e) {
 			System.out.println("Type Error!");
 		}
-		
 		Object result = finalFunc.apply(param);
 		return result;
 	}
