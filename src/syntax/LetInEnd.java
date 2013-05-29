@@ -1,5 +1,6 @@
 package syntax;
 
+import symbol.SymbolTable;
 import interpreter.Interpreter;
 
 public class LetInEnd extends Expression{
@@ -24,6 +25,9 @@ public class LetInEnd extends Expression{
 		if (d==null) System.out.println("Runtime Error!");
 		Interpreter.symbolTable.push(x,d);
 		
+		if ( definition instanceof AnonymousFunction){
+			((AnonymousFunction)definition).localTable = (SymbolTable) Interpreter.symbolTable.clone();
+		}
 		Object b = body.eval();
 		
 		Interpreter.symbolTable.popTo(enter);

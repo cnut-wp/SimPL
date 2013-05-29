@@ -8,9 +8,16 @@ public class AnonymousFunction extends Value{
 	public Variable arg;
 	public Expression body;
 	public SymbolTable localTable=null;
-	
-	public String toString(){
+
+	public String totalToString(){
 		return "fun " + arg.toString() + " -> " + body.toString() + " under environment "+ localTable.toString()+ "";
+	}
+	
+	/*
+	 * since symbolTable may contain AnonymousFunction function, if this happens, it will enter a call circle, then stack overflow
+	 */
+	public String toString(){
+		return "fun " + arg.toString() + " -> " + body.toString();
 	}
 	private AnonymousFunction(){};
 	
@@ -40,7 +47,8 @@ public class AnonymousFunction extends Value{
 			resultFun.body = ((AnonymousFunction)body).body;
 			resultFun.localTable = (SymbolTable) ((AnonymousFunction)this).localTable.clone();
 			((AnonymousFunction)resultFun).localTable.push(arg, e.eval());
-			result = resultFun.eval();		
+			result = resultFun.eval();
+			System.out.println("application apply: "+ resultFun.totalToString());
 		} else {
 			this.localTable.push(arg, e.eval());
 			SymbolTable tmp = Interpreter.symbolTable;
@@ -48,7 +56,6 @@ public class AnonymousFunction extends Value{
 			result = body.eval();
 			Interpreter.symbolTable = tmp;
 		}
-		System.out.println("application apply: "+ result.toString());
 		return result;
 	}
 }
