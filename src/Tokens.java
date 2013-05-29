@@ -1,3 +1,4 @@
+
 // Output created by jacc on Wed May 29 15:23:16 CST 2013
 
 interface Tokens {
