@@ -1,6 +1,6 @@
 package syntax;
 
-import symbol.SymbolTable;
+import interpreter.Interpreter;
 
 public class LetInEnd extends Expression{
 	Variable x;
@@ -18,15 +18,15 @@ public class LetInEnd extends Expression{
 	}
 	
 	public Object eval() {
-		int enter = SymbolTable.getSize();
+		int enter = Interpreter.symbolTable.getSize();
 				
 		Object d = definition.eval();
 		if (d==null) System.out.println("Runtime Error!");
-		SymbolTable.push(x,d);
+		Interpreter.symbolTable.push(x,d);
 		
 		Object b = body.eval();
 		
-		SymbolTable.popTo(enter);
+		Interpreter.symbolTable.popTo(enter);
 		return b;
 	}
 }

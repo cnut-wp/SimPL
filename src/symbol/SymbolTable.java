@@ -4,25 +4,40 @@ import java.util.ArrayList;
 
 import syntax.*;
 
-public class SymbolTable {
-	static ArrayList<Entry> table = new ArrayList<Entry>();
+public class SymbolTable implements Cloneable{
+	public ArrayList<Entry> table = new ArrayList<Entry>();
 	
-	public static void push(Variable name, Object value) {
+	public void push(Variable name, Object value) {
 		Entry e = new Entry(name , value);
 		table.add(e);
 	}
-	public static int getSize() {
+	public int getSize() {
 		return table.size();
 	}
-	public static void popTo(int i) {
+	public void popTo(int i) {
 		while (i<table.size()) 
 			table.remove(table.size()-1);	
 	}
-	public static Object get(Variable variable) {
+	public Object get(Variable variable) {
 		// TODO Auto-generated method stub
 		for (int i = table.size()-1; i>=0; i--)
 			if (variable.equal(table.get(i).name)) return table.get(i).value;
 		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public Object clone() {
+		SymbolTable st = null;
+		try {
+			st = (SymbolTable) super.clone();
+			st.table = (ArrayList<Entry>) this.table.clone();
+			return st;
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 }
 

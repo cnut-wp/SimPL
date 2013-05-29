@@ -1,6 +1,5 @@
 package syntax;
 
-import symbol.SymbolTable;
 
 public class Application extends Expression{
 	Expression func;
