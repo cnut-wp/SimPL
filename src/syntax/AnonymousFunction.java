@@ -38,7 +38,7 @@ public class AnonymousFunction extends Value{
 			AnonymousFunction resultFun = new AnonymousFunction();
 			resultFun.arg = ((AnonymousFunction)body).arg;
 			resultFun.body = ((AnonymousFunction)body).body;
-			resultFun.localTable = (SymbolTable) ((AnonymousFunction)body).localTable.clone();
+			resultFun.localTable = (SymbolTable) ((AnonymousFunction)this).localTable.clone();
 			((AnonymousFunction)resultFun).localTable.push(arg, e.eval());
 			result = resultFun.eval();		
 		} else {
