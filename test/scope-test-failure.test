@@ -6,7 +6,7 @@ let
 		f2 = fun y ->
 		y+num
 	in 
-     (f2 1)
+     (f1 1)
     end
   end
 end
