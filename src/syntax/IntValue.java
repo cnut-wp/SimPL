@@ -7,6 +7,10 @@ public class IntValue extends Value{
 		value =  Integer.parseInt((String)i);
 		isUndef = false;
 	}
+	public IntValue(int i) {
+		value = i;
+		isUndef = false;
+	}
 	public String toString(){
 		if(isUndef)
 			return "undef";
