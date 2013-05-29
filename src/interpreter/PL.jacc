@@ -6,6 +6,7 @@
 //     ... enter arithmetic expressions ... hit EOF to terminate
 //
 
+%package interpreter
 %class     Parser
 %interface Tokens
 %semantic  Object : Interpreter.lexer.yylval
