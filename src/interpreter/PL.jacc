@@ -41,7 +41,7 @@ import syntax.*;
 %left LAMDA
 %right ASSIGN
 %left AND OR
-%left CONS
+%right CONS
 %left EQ LT GT 
 %left  PLUS MINUS
 %left  TIMES DEVIDE

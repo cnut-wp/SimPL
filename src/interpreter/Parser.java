@@ -1,4 +1,4 @@
-// Output created by jacc on Thu May 30 20:39:03 CST 2013
+// Output created by jacc on Thu May 30 21:31:16 CST 2013
 
 package interpreter;
 
@@ -2121,11 +2121,13 @@ class Parser implements Tokens {
 
     private int yys46() {
         switch (yytok) {
+            case LAMDA:
             case error:
             case SKIP:
-            case LAMDA:
             case LOW:
                 return 157;
+            case CONS:
+                return 22;
             case DEVIDE:
                 return 23;
             case EQ:

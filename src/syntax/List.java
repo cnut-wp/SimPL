@@ -15,9 +15,13 @@ public class List extends Expression{
 			System.out.println("runtime error");
 		}
 		try{
-			ListValue tmp = (ListValue) t;
-			if (t instanceof Nil || h.getClass().equals(tmp.head.getClass()))
+			if (t instanceof Nil ){
 				return new ListValue(h , t);
+			} else {
+				ListValue tmp = (ListValue) t;
+				if (h.getClass().equals(tmp.head.getClass()))
+					return new ListValue(h , t);
+			}
 		} catch (Exception e){
 			System.out.println("type error");
 		}
