@@ -14,14 +14,14 @@ public class Application extends Expression{
 		param = (Expression) yysv2;
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		AnonymousFunction finalFunc=null;
 		try{
 			finalFunc = (AnonymousFunction) func.eval();
 		}catch (Exception e) {
 			System.out.println("Type Error!");
 		}
-		Object result = finalFunc.apply(param);
+		Value result = finalFunc.apply(param);
 		return result;
 	}
 }

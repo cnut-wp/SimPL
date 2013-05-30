@@ -8,15 +8,15 @@ public class WhileDoEnd extends Expression{
 		return "while " + condition.toString() + " do " + body.toString() + " end";
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		while (true){
-			Object c = condition.eval();
+			Value c = condition.eval();
 			if (c==null) {
 				System.out.println("RunTime Error!");
 			}
 			boolean  b = false;
 			try {
-				b = (Boolean)c;
+				b = ((BoolValue)c).value;
 			}catch(Exception e) {
 				System.out.println("Type Error!");
 			}

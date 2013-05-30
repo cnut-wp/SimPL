@@ -5,7 +5,7 @@ public class Nop extends Value{
 		return "()";
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		return null;
 	}
 }

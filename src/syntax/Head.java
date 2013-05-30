@@ -9,15 +9,15 @@ public class Head extends Expression{
 		return "head " + e.toString();
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		//System.out.println("e "+e.getClass());
-		Object o = e.eval();
+		Value o = e.eval();
 		//System.out.println("o "+o.getClass());
 		if (o instanceof Nil) return o;
 		try {
 			ListValue v = (ListValue) o;
 			Value head = v.head;
-			while (true) {
+		/*	while (true) {
 				
 				//System.out.println("head "+head.getClass());
 				//System.out.println(head);
@@ -26,7 +26,7 @@ public class Head extends Expression{
 					//System.out.println("head.head "+head.getClass());
 				}
 				else break;
-			}
+			}*/
 			return head.eval();
 		}catch (Exception e) {
 			System.out.println("Runtime error!");

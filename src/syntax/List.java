@@ -8,16 +8,21 @@ public class List extends Expression{
 		return "[" + head.toString() + ", " + tail.toString() + "]";
 	}
 	
-	public Object eval() {
-		//System.out.println(this.toString());
-		//if (head instanceof List) System.out.println("Head is a list!!!"); 
-		//else if (tail instanceof List )  System.out.println("Tail is a list!!!");
-		Object h = head.eval();
+	public Value eval() {
+		Value h = head.eval();
+		Value t = tail.eval();
+		if (h == null || t == null){	
+			System.out.println("runtime error");
+		}
+		try{
+			ListValue tmp = (ListValue) t;
+			if (t instanceof Nil || h.getClass().equals(tmp.head.getClass()))
+				return new ListValue(h , t);
+		} catch (Exception e){
+			System.out.println("type error");
+		}
+		return null;
 		
-		//if (h instanceof Integer) System.out.println("h is "+h);
-		 
-		Object t = tail.eval();
-		return new ListValue(h , t);
 	}
 	
 	public List(Object o1 , Object o2) {

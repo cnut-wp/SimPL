@@ -7,7 +7,7 @@ import syntax.*;
 public class SymbolTable implements Cloneable{
 	public ArrayList<Entry> table = new ArrayList<Entry>();
 	
-	public void push(Variable name, Object value) {
+	public void push(Variable name, Value value) {
 		Entry e = new Entry(name , value);
 		table.add(e);
 	}
@@ -18,7 +18,7 @@ public class SymbolTable implements Cloneable{
 		while (i<table.size()) 
 			table.remove(table.size()-1);	
 	}
-	public Object get(Variable variable) {
+	public Value get(Variable variable) {
 		// TODO Auto-generated method stub
 		for (int i = table.size()-1; i>=0; i--)
 			if (variable.equal(table.get(i).name)) return table.get(i).value;
@@ -47,8 +47,8 @@ public class SymbolTable implements Cloneable{
 
 class Entry {
 	Variable name;
-	Object value;
-	public Entry(Variable n, Object v) {
+	Value value;
+	public Entry(Variable n, Value v) {
 		name = n; value = v;
 	}
 	public String toString()

@@ -35,12 +35,29 @@ public class AnonymousFunction extends Value{
 	 * let f2 = fux x -> x && false
 	 * you can't apply f2 to where should be f1
 	 */
-	public Object eval() {
+	public Value eval() {
 		return this;
 	}
 	
-	public Object apply(Expression e){
-		Object result = null;
+	public BoolValue equal(Value anValue){
+		if (anValue == null){
+			return new BoolValue(false);
+		}
+		if (this == anValue){
+			return new BoolValue(true);
+		}
+		/*
+		 * TODO: how to judge equal of fun
+		 */
+		if (anValue instanceof AnonymousFunction){
+			return new BoolValue(true);
+		}
+		return new BoolValue(false);
+		
+	}
+	
+	public Value apply(Expression e){
+		Value result = null;
 		if ( body instanceof AnonymousFunction){
 			AnonymousFunction resultFun = new AnonymousFunction();
 			resultFun.arg = ((AnonymousFunction)body).arg;

@@ -9,7 +9,7 @@ public class Bracket extends Expression{
 		return "(" + e.toString() + ")";
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		return null;
 	}
 }

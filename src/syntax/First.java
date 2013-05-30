@@ -11,10 +11,11 @@ public class First extends Expression{
 		e = (Expression) yysv;
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		try {
 			Pair pair = (Pair)e;
-			return pair.getE1();
+			PairValue pv = pair.eval();
+			return pv.first;
 		}catch (Exception e) {
 			System.out.println("Type Error!");
 		}

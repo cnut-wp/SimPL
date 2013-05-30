@@ -12,7 +12,7 @@ public class Variable extends Expression{
 		return name;
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		return Interpreter.symbolTable.get(this);
 	}
 	

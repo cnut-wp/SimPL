@@ -1,7 +1,7 @@
 package syntax;
 
 public class IntValue extends Value{
-	boolean isUndef;
+	boolean isUndef=true;
 	int value;
 	public IntValue(Object i) {
 		value =  Integer.parseInt((String)i);
@@ -18,8 +18,27 @@ public class IntValue extends Value{
 			return String.valueOf(value);
 	}
 	
-	public Object eval() {
-		if (isUndef) return null;
-		else return value;
+	public Value eval() {
+		if (isUndef){
+			System.out.println("access undef integer, runtime error");
+			return null;
+		}
+		else{
+			return this;
+		}
+	}
+	
+	public BoolValue equal(Value anValue){
+		if (anValue == null){
+			return new BoolValue(false);
+		}
+		if (this == anValue){
+			return new BoolValue(true);
+		}
+		if (anValue instanceof IntValue){
+			return new BoolValue(((IntValue) anValue).value==this.value);
+		}
+		return new BoolValue(false);
+		
 	}
 }

@@ -11,7 +11,7 @@ public class Pair extends Expression{
 		e1 = (Expression) yysv;
 		e2 = (Expression) yysv2;
 	}
-	public Object eval() {
+	public PairValue eval() {
 		Value f = (Value) e1.eval();
 		Value s = (Value) e2.eval();
 		return new PairValue(f,s);

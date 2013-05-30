@@ -1,7 +1,7 @@
 package syntax;
 
 public class Expression{
-	public Object eval() {
+	public Value eval() {
 		return null;
 	}
 	

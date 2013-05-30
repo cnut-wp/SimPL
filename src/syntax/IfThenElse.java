@@ -20,16 +20,15 @@ public class IfThenElse extends Expression{
 		return "if " + condition.toString() + " then " + thenClause.toString() + " else " + elseClause.toString();
 	}
 	
-	public Object eval() {
-		Object c = condition.eval(); boolean b = false;
+	public Value eval() {
+		Value c = condition.eval(); boolean b = false;
 		if (c==null) System.out.println("Runtime Error!");
 		try {
-			b = (Boolean)c;
-			
+			b = ((BoolValue)c).value;			
 		}catch (Exception e) {
 			System.out.println("Type Error!");
 		}
-		Object result = null;
+		Value result = null;
 		if (b) result = thenClause.eval();
 		else {
 			if (elseClause != null) result = elseClause.eval();

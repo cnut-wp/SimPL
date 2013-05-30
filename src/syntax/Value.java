@@ -1,7 +1,10 @@
 package syntax;
 
 public class Value extends Expression{
-	public Object eval() {
+	public Value eval() {
 		return null;
+	}
+	public BoolValue equal(Value o){
+		return new BoolValue(false);
 	}
 }

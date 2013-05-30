@@ -13,7 +13,7 @@ public class PairValue extends Value{
 		return "(" + first.toString() + ", " + second.toString() + ")";
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		return this;
 	}
 }

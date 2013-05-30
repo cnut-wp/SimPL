@@ -12,7 +12,7 @@ public class Sequence extends Expression{
 		return e1.toString() + "; " + e2.toString();
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		return null;
 	}
 }

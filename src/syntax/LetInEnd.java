@@ -18,17 +18,17 @@ public class LetInEnd extends Expression{
 		this.body = (Expression) body; 
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		int enter = Interpreter.symbolTable.getSize();
 				
-		Object d = definition.eval();
+		Value d = definition.eval();
 		if (d==null) System.out.println("Runtime Error!");
 		Interpreter.symbolTable.push(x,d);
 		
 		if ( definition instanceof AnonymousFunction){
 			((AnonymousFunction)definition).localTable = (SymbolTable) Interpreter.symbolTable.clone();
 		}
-		Object b = body.eval();
+		Value b = body.eval();
 		
 		Interpreter.symbolTable.popTo(enter);
 		return b;

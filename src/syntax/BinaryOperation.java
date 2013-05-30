@@ -40,9 +40,9 @@ public class BinaryOperation extends Expression{
 		return e1.toString() + " " + operator + " " + e2.toString();
 	}
 	
-	public Object eval() {
-		Object o1 = e1.eval();
-		Object o2 = e2.eval();
+	public Value eval() {
+		Value o1 = e1.eval();
+		Value o2 = e2.eval();
 		if (o1 == null || o2 == null) {
 			System.out.println("Runtime Error!");
 		}
@@ -50,81 +50,95 @@ public class BinaryOperation extends Expression{
 		switch(this.op){
 		case plus:
 			try {
-				int i1 = (Integer)o1;
-				int i2 = (Integer)o2;
-				return i1+i2;
+				int i1 = ((IntValue)o1).value;
+				int i2 = ((IntValue)o2).value;
+				return new IntValue(i1+i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 			}			
 			break;
 		case minus:
 			try {
-				int i1 = (Integer)o1;
-				int i2 = (Integer)o2;
-				return i1-i2;
+				int i1 = ((IntValue)o1).value;
+				int i2 = ((IntValue)o2).value;
+				return new IntValue(i1-i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 			}			
 			break;
 		case times:
 			try {
-				int i1 = (Integer)o1;
-				int i2 = (Integer)o2;
-				return i1*i2;
+				int i1 = ((IntValue)o1).value;
+				int i2 = ((IntValue)o2).value;
+				return new IntValue(i1*i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 			}			
 			break;
 		case devide:
 			try {
-				int i1 = (Integer)o1;
-				int i2 = (Integer)o2;
-				return i1/i2;
+				int i1 = ((IntValue)o1).value;
+				int i2 = ((IntValue)o2).value;
+				/*
+				 * TODO: div-0
+				 */
+				if (i2 == 0){
+					IntValue ret = new IntValue(0);
+					ret.isUndef=true;
+					System.out.println("div0, return value is undef");
+					return ret;
+				}else {
+					return new IntValue(i1/i2);
+				}
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 			}			
 			break;
 		case biggerThan:
 			try {
-				int i1 = (Integer)o1;
-				int i2 = (Integer)o2;
-				return i1>i2;
+				int i1 = ((IntValue)o1).value;
+				int i2 = ((IntValue)o2).value;
+				return new BoolValue(i1>i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 			}			
 			break;
 		case lessThan:
 			try {
-				int i1 = (Integer)o1;
-				int i2 = (Integer)o2;
-				return i1<i2;
+				int i1 = ((IntValue)o1).value;
+				int i2 = ((IntValue)o2).value;
+				return new BoolValue(i1<i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 			}			
 			break;
 		case equal:
+			/*
+			 * TODO: equal can be arbitrary type
+			 */
 			try {
-				int i1 = (Integer)o1;
-				int i2 = (Integer)o2;
-				return i1==i2;
+				if (o1.getClass().equals(o2.getClass()))
+					return o1.equal(o2);
+				else 
+					throw new Exception("Type Error");
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 			}			
 			break;
 		case and:
 			try {
-				boolean i1 = (Boolean)o1;
-				boolean i2 = (Boolean)o2;
-				return i1&&i2;
+				boolean i1 = ((BoolValue)o1).value;
+				boolean i2 = ((BoolValue)o2).value;
+				return new BoolValue(i1&&i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 			}			
 			break;
 		case or:
 			try {
-				boolean i1 = (Boolean)o1;
-				boolean i2 = (Boolean)o2;
-				return i1||i2;
+				boolean i1 = ((BoolValue)o1).value;
+				boolean i2 = ((BoolValue)o2).value;
+				return new BoolValue(i1||i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 			}			

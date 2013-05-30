@@ -24,16 +24,16 @@ public class UnaryOperation extends Expression{
 		return operator + e.toString();
 	}
 	
-	public Object eval() {
-		Object o = e.eval();
+	public Value eval() {
+		Value o = e.eval();
 		if (o==null) {
 			System.out.println("Runtime Error!");
 		}
 		switch(op){
 		case not:
 			try{
-				boolean b = (Boolean)o;
-				return !b;
+				boolean b = ((BoolValue)o).value;
+				return new BoolValue(!b);
 			}
 			catch (Exception e) {
 				System.out.println("Type Error!");
@@ -41,8 +41,8 @@ public class UnaryOperation extends Expression{
 			break;
 		case negative:
 			try{
-				int b = (Integer)o;
-				return -b;
+				int b = ((IntValue)o).value;
+				return new IntValue(-b);
 			}
 			catch (Exception e) {
 				System.out.println("Type Error!");

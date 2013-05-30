@@ -1,4 +1,4 @@
-// Output created by jacc on Thu May 30 14:30:40 CST 2013
+// Output created by jacc on Thu May 30 15:01:16 CST 2013
 
 package interpreter;
 
@@ -2815,13 +2815,13 @@ class Parser implements Tokens {
     }
 
     private int yyr21() { // expr : FST expr
-        { yyrv = new First(2);}
+        { yyrv = new First(yysv[yysp-1]);}
         yysv[yysp-=2] = yyrv;
         return yypexpr();
     }
 
     private int yyr22() { // expr : SND expr
-        { yyrv = new First(2);}
+        { yyrv = new Second(yysv[yysp-1]);}
         yysv[yysp-=2] = yyrv;
         return yypexpr();
     }

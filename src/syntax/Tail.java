@@ -9,9 +9,9 @@ public class Tail extends Expression{
 		return "tail " + e.toString();
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		System.out.println("e "+e.getClass());
-		Object o = e.eval();
+		Value o = e.eval();
 		System.out.println("o "+o.getClass());
 		if (o instanceof Nil) return o;
 		try {

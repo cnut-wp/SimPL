@@ -8,7 +8,7 @@ public class Assignment extends Expression{
 		return var.toString() + " := " + val.toString();
 	}
 	
-	public Object eval() {
+	public Value eval() {
 		return null;
 	}
 }
