@@ -24,6 +24,11 @@ public class SymbolTable implements Cloneable{
 			if (variable.equal(table.get(i).name)) return table.get(i).value;
 		return null;
 	}
+	public void set(Variable variable, Value value){
+		for (int i = table.size()-1; i>=0; i--)
+			if (variable.equal(table.get(i).name)) 
+				table.get(i).value = value;
+	}
 	
 	@SuppressWarnings("unchecked")
 	public Object clone() {
