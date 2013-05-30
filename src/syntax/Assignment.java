@@ -9,6 +9,6 @@ public class Assignment extends Expression{
 	}
 	
 	public Value eval() {
-		return null;
+		return new Nop();
 	}
 }

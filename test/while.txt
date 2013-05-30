@@ -1,5 +1,6 @@
-let x = false in
+let x = true in
    while x do
-     1+1
+     1+1;
+	 x=false
    end
 end

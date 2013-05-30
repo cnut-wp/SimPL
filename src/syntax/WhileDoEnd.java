@@ -20,10 +20,15 @@ public class WhileDoEnd extends Expression{
 			}catch(Exception e) {
 				System.out.println("Type Error!");
 			}
-			if (b) body.eval();
+			if (b){
+				Value tmp = body.eval();
+				if (!(tmp instanceof Nop)){
+					System.out.println("Type Error");
+				}
+			}
 			else break;
 		}
-		return null;
+		return new Nop();
 	}
 	
 	public WhileDoEnd(Object c , Object b) {

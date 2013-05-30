@@ -10,6 +10,9 @@ public class Bracket extends Expression{
 	}
 	
 	public Value eval() {
-		return null;
+		if (e == null){
+			System.out.println("runtime error");
+		}
+		return e.eval();
 	}
 }

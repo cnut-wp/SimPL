@@ -13,6 +13,13 @@ public class Sequence extends Expression{
 	}
 	
 	public Value eval() {
-		return null;
+		if (e1 == null || e2 == null)
+		{
+			System.out.println("Runtime Error");
+		}
+	    if (!(e1.eval() instanceof Nop)){
+	    	System.out.println("Type Error");
+	    }
+		return e2.eval();
 	}
 }

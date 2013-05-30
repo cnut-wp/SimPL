@@ -6,6 +6,16 @@ public class Nop extends Value{
 	}
 	
 	public Value eval() {
-		return null;
+		return this;
+	}
+	
+	public BoolValue equals(Value anValue){
+		if (anValue == null){
+			return new BoolValue(false);
+		}
+		if (anValue instanceof Nop){
+			return new BoolValue(true);
+		}
+		return new BoolValue(false);
 	}
 }
