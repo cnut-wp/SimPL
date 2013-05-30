@@ -46,6 +46,7 @@ import syntax.*;
 %left  PLUS MINUS
 %left  TIMES DEVIDE
 %left FST SND
+%left TAIL HEAD
 %nonassoc UMINUS NOT
 
 %%
@@ -75,6 +76,10 @@ expr : LET ID EQ expr IN  expseq END { $$ = new LetInEnd(new Variable($2),$4,$6)
 	|  SND expr { $$ = new First(2);}
 	|  FUN ID LAMDA expr {$$ = new AnonymousFunction(new Variable($2), $4);}
 	|  LPAREN expr expr RPAREN {$$ = new Application($2, $3);}
+	|  TAIL expr {$$ = new Tail($2);}
+	|  HEAD expr {$$ = new Head($2);}
+	|  LPAREN expr RPAREN {$$ = new Bracket($2);}
+	
     ;
 expseq : expr {$$=$1;}
 	|    expr SEMICOLON expseq {$$ = new Sequence($1,$3);}

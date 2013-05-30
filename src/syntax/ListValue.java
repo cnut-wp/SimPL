@@ -6,7 +6,7 @@ public class ListValue extends Value{
 	
 	public ListValue(Object h, Object t) {
 		// TODO Auto-generated constructor stub
-		System.out.println(h.getClass());
+		//System.out.println(h.getClass());
 		if (h instanceof Integer) { 
 			int i = (Integer)h;
 			head = new IntValue(i);
