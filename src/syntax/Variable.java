@@ -9,7 +9,7 @@ public class Variable extends Expression{
 		name = (String) n;
 	}
 	public String toString(){
-		return name;
+		return " "+name+" ";
 	}
 	
 	public Value eval() {
