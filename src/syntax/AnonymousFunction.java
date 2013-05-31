@@ -39,7 +39,8 @@ public class AnonymousFunction extends Value{
 	 * you can't apply f2 to where should be f1
 	 */
 	public Value eval() {
-		System.out.println("STD : "+getStdString());
+		if (Interpreter.debug)
+			System.out.println("STD : "+getStdString());
 		return this;
 	}
 	
@@ -81,10 +82,6 @@ public class AnonymousFunction extends Value{
 		if (this == anValue){
 			return new BoolValue(true);
 		}
-		/*
-		 * TODO: how to judge equal of fun
-		 */
-		
 		if (anValue instanceof AnonymousFunction){
 			String me = getStdString();
 			String he = ((AnonymousFunction) anValue).getStdString();
@@ -103,7 +100,8 @@ public class AnonymousFunction extends Value{
 			resultFun.localTable = (SymbolTable) ((AnonymousFunction)this).localTable.clone();
 			((AnonymousFunction)resultFun).localTable.push(arg, e.eval());
 			result = resultFun.eval();
-			System.out.println("application apply: "+ resultFun.totalToString());
+			if (Interpreter.debug)
+				System.out.println("application apply: "+ resultFun.totalToString());
 		} else {
 			this.localTable.push(arg, e.eval());
 			SymbolTable tmp = Interpreter.symbolTable;

@@ -1,5 +1,6 @@
 package syntax;
 
+
 public class IntValue extends Value{
 	boolean isUndef=true;
 	int value;
@@ -21,6 +22,7 @@ public class IntValue extends Value{
 	public Value eval() {
 		if (isUndef){
 			System.out.println("access undef integer, runtime error");
+			System.exit(-1);
 			return null;
 		}
 		else{

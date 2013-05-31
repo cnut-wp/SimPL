@@ -1,5 +1,7 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 public class BinaryOperation extends Expression{
 	public enum BinaryOperator{
 		plus, minus, times, devide, biggerThan, lessThan, equal, and, or
@@ -45,6 +47,11 @@ public class BinaryOperation extends Expression{
 		Value o2 = e2.eval();
 		if (o1 == null || o2 == null) {
 			System.out.println("Runtime Error!");
+			if (Interpreter.debug)
+			{
+				System.out.println("in BinaryOperation," + o1 + '\t'+ o2);
+			}
+			System.exit(-1);
 		}
 		
 		switch(this.op){
@@ -55,6 +62,10 @@ public class BinaryOperation extends Expression{
 				return new IntValue(i1+i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}			
 			break;
 		case minus:
@@ -64,6 +75,10 @@ public class BinaryOperation extends Expression{
 				return new IntValue(i1-i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}			
 			break;
 		case times:
@@ -73,6 +88,10 @@ public class BinaryOperation extends Expression{
 				return new IntValue(i1*i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}			
 			break;
 		case devide:
@@ -85,13 +104,17 @@ public class BinaryOperation extends Expression{
 				if (i2 == 0){
 					IntValue ret = new IntValue(0);
 					ret.isUndef=true;
-					System.out.println("div0, return value is undef");
+					System.out.println("Div0, return value is undef");
 					return ret;
 				}else {
 					return new IntValue(i1/i2);
 				}
 			}catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}			
 			break;
 		case biggerThan:
@@ -101,6 +124,10 @@ public class BinaryOperation extends Expression{
 				return new BoolValue(i1>i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}			
 			break;
 		case lessThan:
@@ -110,6 +137,10 @@ public class BinaryOperation extends Expression{
 				return new BoolValue(i1<i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}			
 			break;
 		case equal:
@@ -123,6 +154,10 @@ public class BinaryOperation extends Expression{
 					throw new Exception("Type Error");
 			}catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}			
 			break;
 		case and:
@@ -132,6 +167,10 @@ public class BinaryOperation extends Expression{
 				return new BoolValue(i1&&i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}			
 			break;
 		case or:
@@ -141,10 +180,13 @@ public class BinaryOperation extends Expression{
 				return new BoolValue(i1||i2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}			
 			break;
 		}
-		
 		return null;
 	}
 }

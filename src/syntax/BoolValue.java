@@ -8,6 +8,7 @@ public class BoolValue extends Value{
 		value = Boolean.parseBoolean((String)b);
 		undef = false;
 	}
+	
 	public BoolValue(boolean a){
 		value = a;
 		undef = false;
@@ -23,6 +24,7 @@ public class BoolValue extends Value{
 		if (undef)
 		{
 			System.out.println("access undef boolean, Runtime error");
+			System.exit(-1);
 			return null;
 		}else{
 			return this;

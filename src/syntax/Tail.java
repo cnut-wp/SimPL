@@ -1,5 +1,7 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 public class Tail extends Expression{
 	Expression e;	
 	public Tail(Object o) {
@@ -10,15 +12,17 @@ public class Tail extends Expression{
 	}
 	
 	public Value eval() {
-		System.out.println("e "+e.getClass());
 		Value o = e.eval();
-		System.out.println("o "+o.getClass());
 		if (o instanceof Nil) return o;
 		try {
 			ListValue v = (ListValue) o;			
 			return v.tail.eval();
 		}catch (Exception e) {
-			System.out.println("Runtime error!");
+			System.out.println("Runtime Error!");
+			if (Interpreter.debug){
+				e.printStackTrace();
+			}
+			System.exit(-1);
 		}
 		return null;
 	}

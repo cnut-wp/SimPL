@@ -1,5 +1,7 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 public class First extends Expression{
 	Expression e;
 	
@@ -18,6 +20,10 @@ public class First extends Expression{
 			return pv.first;
 		}catch (Exception e) {
 			System.out.println("Type Error!");
+			if (Interpreter.debug){
+				e.printStackTrace();
+			}
+			System.exit(-1);
 		}
 		return null;
 	}

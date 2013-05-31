@@ -15,7 +15,8 @@ public class Assignment extends Expression{
 	}
 	public Value eval() {
 		if (var == null || val == null){
-			System.out.println("Rutime Error");
+			System.out.println("Rutime Error!");
+			System.exit(-1);
 		}
 		try {
 			Variable variable = (Variable)var;
@@ -23,13 +24,15 @@ public class Assignment extends Expression{
 			Value newValue = val.eval();
 			if (old == null || !(old.getClass().equals(newValue.getClass())))
 			{
-				throw new Exception("Type Error");
+				throw new Exception("Type Error!");
 			} else {
 				Interpreter.symbolTable.set(variable, newValue);
 			}
 			return new Nop();
 		} catch (Exception e){
-			System.out.println(e.toString());
+			if (Interpreter.debug)
+				System.out.println(e.toString());
+			System.exit(-1);
 		}
 		return new Nop();
 	}

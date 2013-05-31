@@ -1,5 +1,7 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 public class IfThenElse extends Expression{
 	Expression condition;
 	Expression thenClause;
@@ -22,15 +24,26 @@ public class IfThenElse extends Expression{
 	
 	public Value eval() {
 		Value c = condition.eval(); boolean b = false;
-		if (c==null) System.out.println("Runtime Error!");
+		if (c==null){
+			System.out.println("Runtime Error!");
+			if (Interpreter.debug){
+				System.out.println("In IfThenElse: Condition eval return null");
+			}
+			System.exit(-1);
+		}
 		try {
 			b = ((BoolValue)c).value;			
 		}catch (Exception e) {
 			System.out.println("Type Error!");
+			if (Interpreter.debug){
+				System.out.println("In IfThenElse: Condition eval return not BoolValue");
+			}
+			System.exit(-1);
 		}
 		Value result = null;
-		if (b) result = thenClause.eval();
-		else {
+		if (b){
+			result = thenClause.eval();
+		} else {
 			if (elseClause != null) result = elseClause.eval();
 		}
 		return result;

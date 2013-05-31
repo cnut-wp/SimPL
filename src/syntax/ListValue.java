@@ -5,29 +5,8 @@ public class ListValue extends Value{
 	Value tail;
 	
 	public ListValue(Value h, Value t) {
-		// TODO Auto-generated constructor stub
-		//System.out.println(h.getClass());
 		head = h;
 		tail = t;
-	/*	if (h instanceof Integer) { 
-			int i = (Integer)h;
-			head = new IntValue(i);
-		}
-		else if (h instanceof Boolean) {
-			boolean b = (Boolean) h;
-			head = new BoolValue(b);
-		}
-		else if (h instanceof ListValue) {
-			head = (Value) h;
-		}
-		if (t instanceof Integer) { 
-			int i = (Integer)t;
-			tail = new IntValue(i);
-		}
-		else if (t instanceof Boolean) {
-			boolean b = (Boolean)t;
-			tail = new BoolValue(b);
-		}*/
 	}
 
 	public String toString(){
@@ -36,5 +15,18 @@ public class ListValue extends Value{
 	
 	public Value eval() {
 		return this;
+	}
+	
+	public BoolValue equal(Value anValue){
+		if (anValue == null){
+			return new BoolValue(false);
+		}
+		if (anValue instanceof ListValue){
+			ListValue anL = (ListValue) anValue;
+			boolean h = (head.equal(anL.head)).value;
+			boolean t = (tail.equal(anL.tail)).value;
+			return new BoolValue(h&&t);
+		}
+		return new BoolValue(false);
 	}
 }

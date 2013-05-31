@@ -1,5 +1,7 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 
 public class Application extends Expression{
 	Expression func;
@@ -20,6 +22,10 @@ public class Application extends Expression{
 			finalFunc = (AnonymousFunction) func.eval();
 		}catch (Exception e) {
 			System.out.println("Type Error!");
+			if (Interpreter.debug){
+				e.printStackTrace();
+			}
+			System.exit(-1);
 		}
 		Value result = finalFunc.apply(param);
 		return result;

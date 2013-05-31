@@ -1,5 +1,7 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 public class Pair extends Expression{
 	Expression e1;
 	Expression e2;
@@ -14,6 +16,13 @@ public class Pair extends Expression{
 	public PairValue eval() {
 		Value f = (Value) e1.eval();
 		Value s = (Value) e2.eval();
+		if (f == null || s == null){
+			System.out.println("Runtime Error!");
+			if (Interpreter.debug){
+				System.out.println("In Pair: first:" +f + " second:" + s);
+			}
+			System.exit(-1);
+		}
 		return new PairValue(f,s);
 	}
 }

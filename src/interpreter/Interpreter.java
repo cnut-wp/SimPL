@@ -10,6 +10,7 @@ import symbol.SymbolTable;
 public class Interpreter {
 	public static SymbolTable symbolTable = new SymbolTable();
 	public static boolean shellMode = false;
+	public static boolean debug = false;
 	public static Lexer lexer = null;
 	public static Parser parser = null;
 	
@@ -45,9 +46,13 @@ public class Interpreter {
 	public static void main(String args[]) {
 		if (args.length == 1 && args[0].equals("-s")) {
 			Interpreter.shellMode = true;
-			lexer = new Lexer(System.in);
+			lexer = new Lexer(System.in);	
 		} else if (args.length == 2 && args[0].equals("-f")) {
 			lexer = new Lexer(getFileInputStream(args[1]));
+		} else if (args.length == 2 && args[0].equals("-s") && args[1].equals("-d")) {
+			Interpreter.shellMode = true;
+			Interpreter.debug = true;
+			lexer = new Lexer(System.in);
 		} else {
 			printUsage(args);
 		}

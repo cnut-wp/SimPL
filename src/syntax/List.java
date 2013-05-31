@@ -1,5 +1,7 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 public class List extends Expression{
 	Expression head;
 	Expression tail;	
@@ -12,7 +14,11 @@ public class List extends Expression{
 		Value h = head.eval();
 		Value t = tail.eval();
 		if (h == null || t == null){	
-			System.out.println("runtime error");
+			System.out.println("Runtime Error!");
+			if (Interpreter.debug){
+				System.out.println("In List: head" + h + " tail" + tail);
+			}
+			System.exit(-1);
 		}
 		try{
 			if (t instanceof Nil ){
@@ -23,7 +29,11 @@ public class List extends Expression{
 					return new ListValue(h , t);
 			}
 		} catch (Exception e){
-			System.out.println("type error");
+			System.out.println("Type Error!");
+			if (Interpreter.debug){
+				e.printStackTrace();
+			}
+			System.exit(-1);
 		}
 		return null;
 		

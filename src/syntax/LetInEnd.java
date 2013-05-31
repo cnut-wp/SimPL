@@ -22,7 +22,13 @@ public class LetInEnd extends Expression{
 		int enter = Interpreter.symbolTable.getSize();
 				
 		Value d = definition.eval();
-		if (d==null) System.out.println("Runtime Error!");
+		if (d==null){
+			System.out.println("Runtime Error!");
+			if (Interpreter.debug){
+				System.out.println("In LetInEnd: " + d + " not in symbolTalbe");
+			}
+			System.exit(-1);
+		}
 		Interpreter.symbolTable.push(x,d);
 		
 		if ( definition instanceof AnonymousFunction){

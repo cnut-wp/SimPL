@@ -1,5 +1,7 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 public class UnaryOperation extends Expression{
 	public enum UnaryOperator{
 		not, negative
@@ -28,6 +30,10 @@ public class UnaryOperation extends Expression{
 		Value o = e.eval();
 		if (o==null) {
 			System.out.println("Runtime Error!");
+			if (Interpreter.debug){
+				System.out.println("In UnaryOperation: " + o);
+			}
+			System.exit(-1);
 		}
 		switch(op){
 		case not:
@@ -37,6 +43,10 @@ public class UnaryOperation extends Expression{
 			}
 			catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}
 			break;
 		case negative:
@@ -46,6 +56,10 @@ public class UnaryOperation extends Expression{
 			}
 			catch (Exception e) {
 				System.out.println("Type Error!");
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
 			}
 			break;
 		}
