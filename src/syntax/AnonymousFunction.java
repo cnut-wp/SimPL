@@ -1,5 +1,7 @@
 package syntax;
 
+import java.util.ArrayList;
+
 import symbol.SymbolTable;
 import interpreter.Interpreter;
 
@@ -8,7 +10,8 @@ public class AnonymousFunction extends Value{
 	public Variable arg;
 	public Expression body;
 	public SymbolTable localTable=null;
-
+	public ArrayList<String> args= new ArrayList<String>();
+	public String stdString = null;
 	public String totalToString(){
 		return "fun " + arg.toString() + " -> " + body.toString() + " under environment "+ localTable.toString()+ "";
 	}
@@ -36,7 +39,39 @@ public class AnonymousFunction extends Value{
 	 * you can't apply f2 to where should be f1
 	 */
 	public Value eval() {
+		System.out.println("STD : "+getStdString());
 		return this;
+	}
+	
+	public String getStdString() {
+		if (stdString!=null) return stdString;
+		args= new ArrayList<String>();
+		args.add(arg.name);
+		Expression e = body;		
+		while ( e instanceof AnonymousFunction) {
+			Variable v = ((AnonymousFunction)e).arg;
+			args.add(v.name);
+			e = ((AnonymousFunction)e).body;			
+		}		
+		String std = this.toString();
+		for (int i=args.size()-1; i>=0; i--) {
+			String v = args.get(i); boolean same = false;
+			for (int j = i+1; j<args.size(); j++) 
+				if (v.equals(args.indexOf(j))) {
+					same = true; break;
+				}
+			if (same) continue;
+			//System.out.println("replace "+ v );
+			if (std.endsWith(" "+v)) {
+				int index = std.lastIndexOf(" "+v);
+				std = std.substring(0,index);
+				std += " "+i+"arg"+i;
+			}
+			std = std.replaceAll(" "+v+" ", " "+i+"arg"+i+" "); // 0arg0 is not a normal variable name
+			
+			
+		}
+		return std;		
 	}
 	
 	public BoolValue equal(Value anValue){
@@ -49,13 +84,16 @@ public class AnonymousFunction extends Value{
 		/*
 		 * TODO: how to judge equal of fun
 		 */
+		
 		if (anValue instanceof AnonymousFunction){
-			return new BoolValue(true);
+			String me = getStdString();
+			String he = ((AnonymousFunction) anValue).getStdString();
+			return new BoolValue(me.equals(he));
 		}
 		return new BoolValue(false);
 		
 	}
-	
+
 	public Value apply(Expression e){
 		Value result = null;
 		if ( body instanceof AnonymousFunction){

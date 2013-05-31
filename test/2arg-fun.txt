@@ -1,7 +1,7 @@
 let 
   x = fun y ->
-      fun z -> 
-      y+z+100 
+      fun y -> 
+      y+y+100 
   in 
      ((x 1) 2) 
 end
