@@ -10,8 +10,16 @@ public class Pair extends Expression{
 		return "(" + e1.toString() + ", " + e2.toString() + ")";
 	}
 	public Pair(Object yysv, Object yysv2){
-		e1 = (Expression) yysv;
-		e2 = (Expression) yysv2;
+		try {
+			e1 = (Expression) yysv;
+			e2 = (Expression) yysv2;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	public PairValue eval() {
 		Value f = (Value) e1.eval();

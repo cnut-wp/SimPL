@@ -13,9 +13,17 @@ public class LetInEnd extends Expression{
 	}
 	
 	public LetInEnd(Object v ,Object def , Object body) {
-		x = (Variable) v;
-		definition = (Expression) def;
-		this.body = (Expression) body; 
+		try {
+			x = (Variable) v;
+			definition = (Expression) def;
+			this.body = (Expression) body; 
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	
 	public Value eval() {

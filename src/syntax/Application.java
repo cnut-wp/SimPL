@@ -12,8 +12,16 @@ public class Application extends Expression{
 	}
 	
 	public Application(Object yysv, Object yysv2){
-		func = (Expression) yysv;
-		param = (Expression) yysv2;
+		try {
+			func = (Expression) yysv;
+			param = (Expression) yysv2;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	
 	public Value eval() {

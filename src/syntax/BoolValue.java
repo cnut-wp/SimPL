@@ -1,12 +1,22 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 public class BoolValue extends Value{
 	boolean value;
 	boolean undef = true;
 
 	public BoolValue(Object b){
-		value = Boolean.parseBoolean((String)b);
-		undef = false;
+		try {
+			value = Boolean.parseBoolean((String)b);
+			undef = false;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	
 	public BoolValue(boolean a){

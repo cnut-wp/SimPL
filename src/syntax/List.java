@@ -40,7 +40,15 @@ public class List extends Expression{
 	}
 	
 	public List(Object o1 , Object o2) {
-		head = (Expression) o1;
-		tail = (Expression) o2;
+		try {
+			head = (Expression) o1;
+			tail = (Expression) o2;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 }

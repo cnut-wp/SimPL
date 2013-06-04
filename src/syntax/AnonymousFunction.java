@@ -25,9 +25,17 @@ public class AnonymousFunction extends Value{
 	private AnonymousFunction(){};
 	
 	public AnonymousFunction(Object yysv, Object yysv2) {
-		this.arg = (Variable) yysv;
-		this.body = (Expression) yysv2;
-		localTable = (SymbolTable) Interpreter.symbolTable.clone();
+		try {
+			this.arg = (Variable) yysv;
+			this.body = (Expression) yysv2;
+			localTable = (SymbolTable) Interpreter.symbolTable.clone();
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	
 	

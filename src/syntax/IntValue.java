@@ -1,12 +1,22 @@
 package syntax;
 
+import interpreter.Interpreter;
+
 
 public class IntValue extends Value{
 	boolean isUndef=true;
 	int value;
 	public IntValue(Object i) {
-		value =  Integer.parseInt((String)i);
-		isUndef = false;
+		try {
+			value =  Integer.parseInt((String)i);
+			isUndef = false;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	public IntValue(int i) {
 		value = i;

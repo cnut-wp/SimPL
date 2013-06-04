@@ -8,9 +8,17 @@ public class IfThenElse extends Expression{
 	Expression elseClause;
 	
 	public IfThenElse(Object o1, Object o2, Object o3){
-		condition = (Expression) o1;
-		thenClause = (Expression) o2;
-		elseClause = (Expression) o3;
+		try {
+			condition = (Expression) o1;
+			thenClause = (Expression) o2;
+			elseClause = (Expression) o3;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	
 	public IfThenElse(Object o1, Object o2){

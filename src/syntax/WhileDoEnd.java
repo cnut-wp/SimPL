@@ -46,7 +46,15 @@ public class WhileDoEnd extends Expression{
 	}
 	
 	public WhileDoEnd(Object c , Object b) {
-		condition = (Expression) c;
-		body = (Expression) b;
+		try {
+			condition = (Expression) c;
+			body = (Expression) b;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 }

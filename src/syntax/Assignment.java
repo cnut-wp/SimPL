@@ -10,8 +10,16 @@ public class Assignment extends Expression{
 		return var.toString() + " := " + val.toString();
 	}
 	public Assignment(Object yysv, Object yysv2){
-		var = (Expression) yysv;
-		val = (Expression) yysv2;
+		try {
+			var = (Expression) yysv;
+			val = (Expression) yysv2;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	public Value eval() {
 		if (var == null || val == null){

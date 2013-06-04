@@ -12,9 +12,17 @@ public class BinaryOperation extends Expression{
 	BinaryOperator op;
 	
 	public BinaryOperation(Object yysv, BinaryOperator op, Object yysv2) {
-		this.e1 = (Expression) yysv;
-		this.op = op;
-		this.e2 = (Expression) yysv2;
+		try {
+			this.e1 = (Expression) yysv;
+			this.op = op;
+			this.e2 = (Expression) yysv2;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	
 	public String toString(){

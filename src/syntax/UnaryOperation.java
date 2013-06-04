@@ -11,8 +11,16 @@ public class UnaryOperation extends Expression{
 	UnaryOperator op;
 	
 	public UnaryOperation(UnaryOperator uop, Object exp) {
-		e = (Expression) exp;
-		op = uop;
+		try {
+			e = (Expression) exp;
+			op = uop;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	
 	public String toString(){

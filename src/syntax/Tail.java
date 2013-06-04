@@ -5,7 +5,15 @@ import interpreter.Interpreter;
 public class Tail extends Expression{
 	Expression e;	
 	public Tail(Object o) {
-		e = (Expression) o;
+		try {
+			e = (Expression) o;
+		} catch ( Exception e){
+			System.out.println("Type Error!");
+			if (Interpreter.debug == true){
+				e.printStackTrace();
+			}
+			System.exit(-1);
+		}
 	}
 	public String toString(){
 		return "tail " + e.toString();
