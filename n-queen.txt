@@ -28,11 +28,12 @@ let
  assign = fun list -> fun v -> fun i ->
     if v = 0
     then
-       (head list) = v
+       (head list) := v
        ;
        list
     else
-       assign list v (i-1)
+       (((assign (tail list)) v) (i-1))
+	end
 in
 
 
