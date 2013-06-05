@@ -8,6 +8,8 @@ import java.io.InputStream;
 import symbol.SymbolTable;
 
 public class Interpreter {
+	public static String PROMTINFOMETA = "SimPL>";
+	public static String PROMTINFO = "";
 	public static SymbolTable symbolTable = new SymbolTable();
 	public static boolean shellMode = false;
 	public static boolean debug = false;
@@ -55,6 +57,10 @@ public class Interpreter {
 			lexer = new Lexer(System.in);
 		} else {
 			printUsage(args);
+		}
+		if (Interpreter.shellMode){
+			Interpreter.PROMTINFO = Interpreter.PROMTINFOMETA;
+			System.out.print(Interpreter.PROMTINFO);
 		}
 		lexer.nextChar();
 		lexer.yylex();

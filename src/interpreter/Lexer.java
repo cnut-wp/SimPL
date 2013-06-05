@@ -47,7 +47,13 @@ public class Lexer {
 		if (c >= 0) {
 			try {
 				yylval += (char)c;
-				c = in.read();	
+				c = in.read();
+				if (c == '\n'){
+					if (Interpreter.shellMode){
+						for (int i = 0; i< Interpreter.PROMTINFO.length(); i++)
+						System.out.print(' ');
+					}
+				}
 			} catch (Exception e) {
 				c = (-1);
 			}
@@ -61,6 +67,12 @@ public class Lexer {
 		if (c >= 0) {
 			try {
 				c = in.read();
+				if (c == '\n'){
+					if (Interpreter.shellMode){
+						for (int i = 0; i< Interpreter.PROMTINFO.length(); i++)
+						System.out.print(' ');
+					}
+				}
 			} catch (Exception e) {
 				c = (-1);
 			}

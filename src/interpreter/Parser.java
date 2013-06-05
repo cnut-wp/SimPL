@@ -1,4 +1,4 @@
-// Output created by jacc on Tue Jun 04 23:56:41 CST 2013
+// Output created by jacc on Wed Jun 05 17:11:17 CST 2013
 
 package interpreter;
 
@@ -2803,7 +2803,7 @@ class Parser implements Tokens {
     }
 
     private int yyr1() { // prog : expr
-        { System.out.println(((Expression)yysv[yysp-1]).eval()); }
+        { System.out.println(Interpreter.PROMTINFO+((Expression)yysv[yysp-1]).eval()); }
         yysv[yysp-=1] = yyrv;
         return 1;
     }
