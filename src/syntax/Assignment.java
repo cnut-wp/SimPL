@@ -1,5 +1,7 @@
 package syntax;
 
+import syntax.BinaryOperation.BinaryOperator;
+import syntax.UnaryOperation.UnaryOperator;
 import interpreter.Interpreter;
 
 public class Assignment extends Expression{
@@ -32,17 +34,18 @@ public class Assignment extends Expression{
 			Value newValue = val.eval();
 			if (old == null){
 				System.out.println("Runtime Error!");
-				throw new Exception("Runtime Error!");
+				System.exit(-1);
 			}
-			if (!(isTypeEqual(old, newValue)))
+			if (!(isTwoValueTypeEqual(old, newValue)))
 			{
 				System.out.println("Type Error!");
-				throw new Exception("Type Error!");
+				System.exit(-1);
 			} else {
 				Interpreter.symbolTable.set(variable, newValue);
 			}
 			return new Nop();
 		} catch (Exception e){
+			System.out.println("Type Error!");
 			if (Interpreter.debug)
 				System.out.println(e.toString());
 			System.exit(-1);
@@ -51,7 +54,7 @@ public class Assignment extends Expression{
 	}
 	
 	
-	private boolean isTypeEqual(Value oldValue, Value newValue){
+	private boolean isTwoValueTypeEqual(Value oldValue, Value newValue){
 		if (oldValue.getClass().equals(newValue.getClass())){
 			if (oldValue.getClass().equals(AnonymousFunction.class)){
 				AnonymousFunction a1 = (AnonymousFunction) oldValue;
@@ -83,7 +86,102 @@ public class Assignment extends Expression{
 		
 		if (argc1 != argc2)
 			return false;		
-		return (e1.getClass().equals(e2.getClass()));
+		return (isExprTypeEqual(e1, e2));
 		
+	}
+	
+	/*
+	 * old is narrow, new is board, will be not equal
+	 */
+	private boolean isExprTypeEqual(Expression oldExp, Expression newExp){
+		while (oldExp instanceof Sequence){
+			oldExp = ((Sequence)(oldExp)).e2;
+		}
+		while (newExp instanceof Sequence){
+			newExp = ((Sequence)(newExp)).e2;
+		}
+		if (oldExp instanceof Variable){
+			return true;
+		}
+		// explicit judge
+		if (!(oldExp instanceof Variable) && (newExp instanceof Variable)){
+			return false;
+		} 
+		if (oldExp instanceof Application || newExp instanceof Application){
+			return true;
+		}
+		
+		if (oldExp.getClass().equals(newExp.getClass())){
+			return true;
+		} else if ((oldExp instanceof List) && (newExp instanceof Nil)){
+			return true;			
+		} else if ((oldExp instanceof Nil) && (newExp instanceof List)){
+			return true;			
+		} else if ((oldExp instanceof ListValue) && (newExp instanceof Nil)){
+			return true;			
+		} else if ((oldExp instanceof Nil) && (newExp instanceof ListValue)){
+			return true;			
+		} else if ((oldExp instanceof IntValue) && (newExp instanceof BinaryOperation)){
+			if (((BinaryOperation)(newExp)).op == BinaryOperator.plus ||
+				((BinaryOperation)(newExp)).op == BinaryOperator.minus ||
+				((BinaryOperation)(newExp)).op == BinaryOperator.times ||
+				((BinaryOperation)(newExp)).op == BinaryOperator.devide
+					)
+				return true;
+			else
+				return false;
+		 } else if ((newExp instanceof IntValue) && (oldExp instanceof BinaryOperation)){
+			if (((BinaryOperation)(oldExp)).op == BinaryOperator.plus ||
+					((BinaryOperation)(oldExp)).op == BinaryOperator.minus ||
+					((BinaryOperation)(oldExp)).op == BinaryOperator.times ||
+					((BinaryOperation)(oldExp)).op == BinaryOperator.devide
+						)
+					return true;
+				else
+					return false;
+		 } else if ((oldExp instanceof BoolValue) && (newExp instanceof BinaryOperation)){
+			if ( ! (
+					((BinaryOperation)(newExp)).op == BinaryOperator.plus ||
+					((BinaryOperation)(newExp)).op == BinaryOperator.minus ||
+					((BinaryOperation)(newExp)).op == BinaryOperator.times ||
+					((BinaryOperation)(newExp)).op == BinaryOperator.devide
+			       ))
+					return true;
+				else
+					return false;
+	    } else if ((newExp instanceof BoolValue) && (oldExp instanceof BinaryOperation)){
+				if ( !(
+						((BinaryOperation)(oldExp)).op == BinaryOperator.plus ||
+						((BinaryOperation)(oldExp)).op == BinaryOperator.minus ||
+						((BinaryOperation)(oldExp)).op == BinaryOperator.times ||
+						((BinaryOperation)(oldExp)).op == BinaryOperator.devide
+					))
+						return true;
+					else
+						return false;
+	    } 
+		/****************** unaryOperation **************************************/
+	    else if ((oldExp instanceof IntValue) && (newExp instanceof UnaryOperation)){
+	    	if (((UnaryOperation)(oldExp)).op == UnaryOperator.negative)
+	    		return true;
+	    	else
+	    		return false;	    	
+	    } else if ((newExp instanceof IntValue) && (oldExp instanceof UnaryOperation)){
+	    	if (((UnaryOperation)(newExp)).op == UnaryOperator.negative)
+	    		return true;
+	    	else
+	    		return false;	    	
+	    } else if ((oldExp instanceof BoolValue) && (newExp instanceof UnaryOperation)){
+	    	if (((UnaryOperation)(oldExp)).op == UnaryOperator.not)
+	    		return true;
+	    	else
+	    		return false;	    	
+	    } else if ((newExp instanceof BoolValue) && (oldExp instanceof UnaryOperation)){
+	    	if (((UnaryOperation)(newExp)).op == UnaryOperator.not)
+	    		return true;
+	    	else
+	    		return false;	    	
+	    }
+		return false;
 	}
 }
