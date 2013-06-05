@@ -175,6 +175,8 @@ public class Lexer {
 		        					continue;
 		        				}else{
 		        					nextChar();
+		        					if (c == '\n')
+		        						line++;
 		        					if (c == '/'){
 		        						break;
 		        					}

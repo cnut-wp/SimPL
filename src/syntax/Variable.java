@@ -13,7 +13,15 @@ public class Variable extends Expression{
 	}
 	
 	public Value eval() {
-		return Interpreter.symbolTable.get(this);
+		Value ret = Interpreter.symbolTable.get(this);
+		if (ret == null){
+			System.out.println("Runtime Error!");
+			if (Interpreter.debug){
+				System.out.println("In Variable: return value is null");
+			}
+			System.exit(-1);
+		}
+		return ret;
 	}
 	
 	public boolean equal(Variable v) {

@@ -156,10 +156,13 @@ public class BinaryOperation extends Expression{
 			 * TODO: equal can be arbitrary type
 			 */
 			try {
+				/*
 				if (o1.getClass().equals(o2.getClass()))
 					return o1.equal(o2);
 				else 
 					throw new Exception("Type Error");
+				*/
+				return o1.equal(o2);
 			}catch (Exception e) {
 				System.out.println("Type Error!");
 				if (Interpreter.debug){

@@ -1,5 +1,7 @@
 package syntax;
 
+import syntax.BinaryOperation.BinaryOperator;
+import syntax.UnaryOperation.UnaryOperator;
 import interpreter.Interpreter;
 
 public class IfThenElse extends Expression{
@@ -73,29 +75,99 @@ public class IfThenElse extends Expression{
 	
 	
 	private boolean isThenElseTypeEqual(){
-		if (thenClause instanceof Variable || elseClause instanceof Variable){
+		Expression e1 = thenClause;
+		Expression e2 = elseClause;
+		while (e1 instanceof Sequence){
+			e1 = ((Sequence)(e1)).e2;
+		}
+		while (e2 instanceof Sequence){
+			e2 = ((Sequence)(e2)).e2;
+		}
+		if (e1 instanceof Variable || e2 instanceof Variable){
 			return true;
 		}
-		if (thenClause instanceof Application || elseClause instanceof Application){
+		if (e1 instanceof Application || e2 instanceof Application){
 			return true;
 		}
-		if (thenClause.getClass().equals(elseClause.getClass())){
-			if (thenClause.getClass().equals(AnonymousFunction.class)){
-				AnonymousFunction a1 = (AnonymousFunction) thenClause;
-				AnonymousFunction a2 = (AnonymousFunction) elseClause;
+		
+		
+		if (e1.getClass().equals(e2.getClass())){
+			if (e1.getClass().equals(AnonymousFunction.class)){
+				AnonymousFunction a1 = (AnonymousFunction) e1;
+				AnonymousFunction a2 = (AnonymousFunction) e2;
 				return twoAnonFunTypeEqual(a1, a2);
 			} else {
 				return true;
 			}
-		} else if ((thenClause instanceof List) && (elseClause instanceof Nil)){
+		} else if ((e1 instanceof List) && (e2 instanceof Nil)){
 			return true;			
-		} else if ((thenClause instanceof Nil) && (elseClause instanceof List)){
+		} else if ((e1 instanceof Nil) && (e2 instanceof List)){
 			return true;			
-		} else if ((thenClause instanceof ListValue) && (elseClause instanceof Nil)){
+		} else if ((e1 instanceof ListValue) && (e2 instanceof Nil)){
 			return true;			
-		} else if ((thenClause instanceof Nil) && (elseClause instanceof ListValue)){
+		} else if ((e1 instanceof Nil) && (e2 instanceof ListValue)){
 			return true;			
-		}
+		} else if ((e1 instanceof IntValue) && (e2 instanceof BinaryOperation)){
+			if (((BinaryOperation)(e2)).op == BinaryOperator.plus ||
+				((BinaryOperation)(e2)).op == BinaryOperator.minus ||
+				((BinaryOperation)(e2)).op == BinaryOperator.times ||
+				((BinaryOperation)(e2)).op == BinaryOperator.devide
+					)
+				return true;
+			else
+				return false;
+		 } else if ((e2 instanceof IntValue) && (e1 instanceof BinaryOperation)){
+			if (((BinaryOperation)(e1)).op == BinaryOperator.plus ||
+					((BinaryOperation)(e1)).op == BinaryOperator.minus ||
+					((BinaryOperation)(e1)).op == BinaryOperator.times ||
+					((BinaryOperation)(e1)).op == BinaryOperator.devide
+						)
+					return true;
+				else
+					return false;
+		 } else if ((e1 instanceof BoolValue) && (e2 instanceof BinaryOperation)){
+			if ( ! (
+					((BinaryOperation)(e2)).op == BinaryOperator.plus ||
+					((BinaryOperation)(e2)).op == BinaryOperator.minus ||
+					((BinaryOperation)(e2)).op == BinaryOperator.times ||
+					((BinaryOperation)(e2)).op == BinaryOperator.devide
+			       ))
+					return true;
+				else
+					return false;
+	    } else if ((e2 instanceof BoolValue) && (e1 instanceof BinaryOperation)){
+				if ( !(
+						((BinaryOperation)(e1)).op == BinaryOperator.plus ||
+						((BinaryOperation)(e1)).op == BinaryOperator.minus ||
+						((BinaryOperation)(e1)).op == BinaryOperator.times ||
+						((BinaryOperation)(e1)).op == BinaryOperator.devide
+					))
+						return true;
+					else
+						return false;
+	    } 
+		/****************** unaryOperation **************************************/
+	    else if ((e1 instanceof IntValue) && (e2 instanceof UnaryOperation)){
+	    	if (((UnaryOperation)(e1)).op == UnaryOperator.negative)
+	    		return true;
+	    	else
+	    		return false;	    	
+	    } else if ((e2 instanceof IntValue) && (e1 instanceof UnaryOperation)){
+	    	if (((UnaryOperation)(e2)).op == UnaryOperator.negative)
+	    		return true;
+	    	else
+	    		return false;	    	
+	    } else if ((e1 instanceof BoolValue) && (e2 instanceof UnaryOperation)){
+	    	if (((UnaryOperation)(e1)).op == UnaryOperator.not)
+	    		return true;
+	    	else
+	    		return false;	    	
+	    } else if ((e2 instanceof BoolValue) && (e1 instanceof UnaryOperation)){
+	    	if (((UnaryOperation)(e2)).op == UnaryOperator.not)
+	    		return true;
+	    	else
+	    		return false;	    	
+	    }
 		return false;
 	}
 	

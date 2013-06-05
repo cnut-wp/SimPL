@@ -1,4 +1,4 @@
-// Output created by jacc on Thu May 30 21:31:16 CST 2013
+// Output created by jacc on Tue Jun 04 23:56:41 CST 2013
 
 package interpreter;
 
@@ -60,7 +60,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr19();
+                    yyn = yyr21();
                     continue;
 
                 case 3:
@@ -77,7 +77,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr20();
+                    yyn = yyr22();
                     continue;
 
                 case 4:
@@ -107,7 +107,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr14();
+                    yyn = yyr16();
                     continue;
 
                 case 6:
@@ -172,7 +172,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr18();
+                    yyn = yyr20();
                     continue;
 
                 case 10:
@@ -206,7 +206,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr12();
+                    yyn = yyr14();
                     continue;
 
                 case 12:
@@ -496,7 +496,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr21();
+                    yyn = yyr23();
                     continue;
 
                 case 33:
@@ -531,7 +531,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr26();
+                    yyn = yyr27();
                     continue;
 
                 case 35:
@@ -588,7 +588,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr28();
+                    yyn = yyr29();
                     continue;
 
                 case 39:
@@ -605,7 +605,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr15();
+                    yyn = yyr17();
                     continue;
 
                 case 40:
@@ -622,7 +622,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr22();
+                    yyn = yyr24();
                     continue;
 
                 case 41:
@@ -639,7 +639,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr25();
+                    yyn = yyr26();
                     continue;
 
                 case 42:
@@ -656,7 +656,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr13();
+                    yyn = yyr15();
                     continue;
 
                 case 43:
@@ -709,7 +709,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr6();
+                    yyn = yyr8();
                     continue;
 
                 case 48:
@@ -789,7 +789,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr5();
+                    yyn = yyr7();
                     continue;
 
                 case 56:
@@ -871,7 +871,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr27();
+                    yyn = yyr28();
                     continue;
 
                 case 62:
@@ -932,7 +932,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr24();
+                    yyn = yyr25();
                     continue;
 
                 case 67:
@@ -1018,7 +1018,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr17();
+                    yyn = yyr19();
                     continue;
 
                 case 73:
@@ -1057,7 +1057,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr16();
+                    yyn = yyr18();
                     continue;
 
                 case 76:
@@ -1078,7 +1078,7 @@ class Parser implements Tokens {
                             yyn = 157;
                             continue;
                     }
-                    yyn = yyr2();
+                    yyn = yyr4();
                     continue;
 
                 case 154:
@@ -2083,7 +2083,7 @@ class Parser implements Tokens {
             case TIMES:
                 return 31;
         }
-        return yyr10();
+        return yyr12();
     }
 
     private int yys45() {
@@ -2162,7 +2162,7 @@ class Parser implements Tokens {
             case TIMES:
                 return 31;
         }
-        return yyr9();
+        return yyr11();
     }
 
     private int yys49() {
@@ -2181,7 +2181,7 @@ class Parser implements Tokens {
             case TIMES:
                 return 31;
         }
-        return yyr7();
+        return yyr9();
     }
 
     private int yys50() {
@@ -2200,7 +2200,7 @@ class Parser implements Tokens {
             case TIMES:
                 return 31;
         }
-        return yyr8();
+        return yyr10();
     }
 
     private int yys51() {
@@ -2215,7 +2215,7 @@ class Parser implements Tokens {
             case TIMES:
                 return 31;
         }
-        return yyr4();
+        return yyr6();
     }
 
     private int yys52() {
@@ -2242,7 +2242,7 @@ class Parser implements Tokens {
             case TIMES:
                 return 31;
         }
-        return yyr11();
+        return yyr13();
     }
 
     private int yys53() {
@@ -2257,7 +2257,7 @@ class Parser implements Tokens {
             case TIMES:
                 return 31;
         }
-        return yyr3();
+        return yyr5();
     }
 
     private int yys54() {
@@ -2290,7 +2290,7 @@ class Parser implements Tokens {
             case TIMES:
                 return 31;
         }
-        return yyr29();
+        return yyr2();
     }
 
     private int yys56() {
@@ -2535,7 +2535,7 @@ class Parser implements Tokens {
             case TIMES:
                 return 31;
         }
-        return yyr23();
+        return yyr3();
     }
 
     private int yys64() {
@@ -2826,171 +2826,171 @@ class Parser implements Tokens {
         return 3;
     }
 
-    private int yyr2() { // expr : LET ID EQ expr IN expr END
-        { yyrv = new LetInEnd(new Variable(yysv[yysp-6]),yysv[yysp-4],yysv[yysp-2]);}
-        yysv[yysp-=7] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr3() { // expr : expr PLUS expr
-        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.plus , yysv[yysp-1]);}
+    private int yyr2() { // expr : expr SEMICOLON expr
+        {yyrv = new Sequence(yysv[yysp-3],yysv[yysp-1]);}
         yysv[yysp-=3] = yyrv;
         return yypexpr();
     }
 
-    private int yyr4() { // expr : expr MINUS expr
-        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.minus, yysv[yysp-1]);}
-        yysv[yysp-=3] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr5() { // expr : expr TIMES expr
-        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.times, yysv[yysp-1]);}
-        yysv[yysp-=3] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr6() { // expr : expr DEVIDE expr
-        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.devide, yysv[yysp-1]);}
-        yysv[yysp-=3] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr7() { // expr : expr GT expr
-        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.biggerThan, yysv[yysp-1]);}
-        yysv[yysp-=3] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr8() { // expr : expr LT expr
-        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.lessThan, yysv[yysp-1]);}
-        yysv[yysp-=3] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr9() { // expr : expr EQ expr
-        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.equal, yysv[yysp-1]);}
-        yysv[yysp-=3] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr10() { // expr : expr AND expr
-        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.and, yysv[yysp-1]);}
-        yysv[yysp-=3] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr11() { // expr : expr OR expr
-        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.or, yysv[yysp-1]);}
-        yysv[yysp-=3] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr12() { // expr : INTEGER
-        {yyrv = new IntValue(yysv[yysp-1]); }
-        yysv[yysp-=1] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr13() { // expr : UMINUS expr
-        {yyrv = new UnaryOperation(UnaryOperation.UnaryOperator.negative, yysv[yysp-1]);}
-        yysv[yysp-=2] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr14() { // expr : BOOLEAN
-        {yyrv = new BoolValue(yysv[yysp-1]); }
-        yysv[yysp-=1] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr15() { // expr : NOT expr
-        {yyrv = new UnaryOperation(UnaryOperation.UnaryOperator.not, yysv[yysp-1]);}
-        yysv[yysp-=2] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr16() { // expr : IF expr THEN expr ELSE expr END
-        {yyrv = new IfThenElse(yysv[yysp-6],yysv[yysp-4], yysv[yysp-2]);}
-        yysv[yysp-=7] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr17() { // expr : WHILE expr DO expr END
-        {yyrv = new WhileDoEnd(yysv[yysp-4],yysv[yysp-2]);}
-        yysv[yysp-=5] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr18() { // expr : ID
-        {yyrv = new Variable(yysv[yysp-1]); }
-        yysv[yysp-=1] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr19() { // expr : list
-        {yyrv = yysv[yysp-1];}
-        yysv[yysp-=1] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr20() { // expr : pair
-        {yyrv = yysv[yysp-1];}
-        yysv[yysp-=1] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr21() { // expr : FST expr
-        { yyrv = new First(yysv[yysp-1]);}
-        yysv[yysp-=2] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr22() { // expr : SND expr
-        { yyrv = new Second(yysv[yysp-1]);}
-        yysv[yysp-=2] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr23() { // expr : FUN ID LAMDA expr
+    private int yyr3() { // expr : FUN ID LAMDA expr
         {yyrv = new AnonymousFunction(new Variable(yysv[yysp-3]), yysv[yysp-1]);}
         yysv[yysp-=4] = yyrv;
         return yypexpr();
     }
 
-    private int yyr24() { // expr : LPAREN expr expr RPAREN
+    private int yyr4() { // expr : LET ID EQ expr IN expr END
+        { yyrv = new LetInEnd(new Variable(yysv[yysp-6]),yysv[yysp-4],yysv[yysp-2]);}
+        yysv[yysp-=7] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr5() { // expr : expr PLUS expr
+        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.plus , yysv[yysp-1]);}
+        yysv[yysp-=3] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr6() { // expr : expr MINUS expr
+        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.minus, yysv[yysp-1]);}
+        yysv[yysp-=3] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr7() { // expr : expr TIMES expr
+        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.times, yysv[yysp-1]);}
+        yysv[yysp-=3] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr8() { // expr : expr DEVIDE expr
+        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.devide, yysv[yysp-1]);}
+        yysv[yysp-=3] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr9() { // expr : expr GT expr
+        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.biggerThan, yysv[yysp-1]);}
+        yysv[yysp-=3] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr10() { // expr : expr LT expr
+        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.lessThan, yysv[yysp-1]);}
+        yysv[yysp-=3] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr11() { // expr : expr EQ expr
+        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.equal, yysv[yysp-1]);}
+        yysv[yysp-=3] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr12() { // expr : expr AND expr
+        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.and, yysv[yysp-1]);}
+        yysv[yysp-=3] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr13() { // expr : expr OR expr
+        { yyrv = new BinaryOperation(yysv[yysp-3], BinaryOperation.BinaryOperator.or, yysv[yysp-1]);}
+        yysv[yysp-=3] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr14() { // expr : INTEGER
+        {yyrv = new IntValue(yysv[yysp-1]); }
+        yysv[yysp-=1] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr15() { // expr : UMINUS expr
+        {yyrv = new UnaryOperation(UnaryOperation.UnaryOperator.negative, yysv[yysp-1]);}
+        yysv[yysp-=2] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr16() { // expr : BOOLEAN
+        {yyrv = new BoolValue(yysv[yysp-1]); }
+        yysv[yysp-=1] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr17() { // expr : NOT expr
+        {yyrv = new UnaryOperation(UnaryOperation.UnaryOperator.not, yysv[yysp-1]);}
+        yysv[yysp-=2] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr18() { // expr : IF expr THEN expr ELSE expr END
+        {yyrv = new IfThenElse(yysv[yysp-6],yysv[yysp-4], yysv[yysp-2]);}
+        yysv[yysp-=7] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr19() { // expr : WHILE expr DO expr END
+        {yyrv = new WhileDoEnd(yysv[yysp-4],yysv[yysp-2]);}
+        yysv[yysp-=5] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr20() { // expr : ID
+        {yyrv = new Variable(yysv[yysp-1]); }
+        yysv[yysp-=1] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr21() { // expr : list
+        {yyrv = yysv[yysp-1];}
+        yysv[yysp-=1] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr22() { // expr : pair
+        {yyrv = yysv[yysp-1];}
+        yysv[yysp-=1] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr23() { // expr : FST expr
+        { yyrv = new First(yysv[yysp-1]);}
+        yysv[yysp-=2] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr24() { // expr : SND expr
+        { yyrv = new Second(yysv[yysp-1]);}
+        yysv[yysp-=2] = yyrv;
+        return yypexpr();
+    }
+
+    private int yyr25() { // expr : LPAREN expr expr RPAREN
         {yyrv = new Application(yysv[yysp-3], yysv[yysp-2]);}
         yysv[yysp-=4] = yyrv;
         return yypexpr();
     }
 
-    private int yyr25() { // expr : TAIL expr
+    private int yyr26() { // expr : TAIL expr
         {yyrv = new Tail(yysv[yysp-1]);}
         yysv[yysp-=2] = yyrv;
         return yypexpr();
     }
 
-    private int yyr26() { // expr : HEAD expr
+    private int yyr27() { // expr : HEAD expr
         {yyrv = new Head(yysv[yysp-1]);}
         yysv[yysp-=2] = yyrv;
         return yypexpr();
     }
 
-    private int yyr27() { // expr : LPAREN expr RPAREN
+    private int yyr28() { // expr : LPAREN expr RPAREN
         {yyrv = new Bracket(yysv[yysp-2]);}
         yysv[yysp-=3] = yyrv;
         return yypexpr();
     }
 
-    private int yyr28() { // expr : LPAREN RPAREN
+    private int yyr29() { // expr : LPAREN RPAREN
         {yyrv = new Nop();}
         yysv[yysp-=2] = yyrv;
-        return yypexpr();
-    }
-
-    private int yyr29() { // expr : expr SEMICOLON expr
-        {yyrv = new Sequence(yysv[yysp-3],yysv[yysp-1]);}
-        yysv[yysp-=3] = yyrv;
         return yypexpr();
     }
 
