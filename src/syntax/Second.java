@@ -23,8 +23,9 @@ public class Second extends Expression{
 	
 	public Value eval() {
 		try {
-			Pair pair = (Pair)e;
-			PairValue pv = pair.eval();
+			//Pair pair = (Pair)e;
+			
+			PairValue pv = (PairValue) e.eval();
 			return pv.second;
 		}catch (Exception e) {
 			System.out.println("Type Error!");

@@ -145,7 +145,8 @@ public class Util {
 				return ((AnonymousFunction)(e));
 			}
 			if (e instanceof Application){
-				return getType(((Application)(e)).func);
+				//return getType(((Application)(e)).func);
+				return null;
 			}
 			if (e instanceof Assignment){
 				return new Nop();
@@ -234,8 +235,10 @@ public class Util {
 			}
 			
 			if (e instanceof Variable){
+				//this may return null, but it is no problem
 				return null;
-			}
+				//return Interpreter.symbolTable.get((Variable)e);
+			}	
 			
 			if (e instanceof WhileDoEnd){
 				return new Nop();

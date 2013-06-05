@@ -23,8 +23,8 @@ public class First extends Expression{
 	
 	public Value eval() {
 		try {
-			Pair pair = (Pair)e;
-			PairValue pv = pair.eval();
+			//Pair pair = (Pair)e;
+			PairValue pv = (PairValue)e.eval();
 			return pv.first;
 		}catch (Exception e) {
 			System.out.println("Type Error!");
