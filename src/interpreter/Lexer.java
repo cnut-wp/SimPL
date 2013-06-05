@@ -183,12 +183,24 @@ public class Lexer {
 		        		   }
 		        		   while(true){
 		        				nextChar();
+		        				if (c == '\n')
+	        						line++;
+		        				if (c == '$'){
+		        					if (Interpreter.shellMode){
+		        						yyerror("Syntax Error! /* $ Error");
+		        					}
+		        				}
 		        				if (c != '*'){
 		        					continue;
 		        				}else{
 		        					nextChar();
 		        					if (c == '\n')
 		        						line++;
+		        					if (c == '$'){
+			        					if (Interpreter.shellMode){
+			        						yyerror("Syntax Error! /* $ Error");
+			        					}
+			        				}
 		        					if (c == '/'){
 		        						break;
 		        					}

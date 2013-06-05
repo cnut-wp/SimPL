@@ -1,1 +1,1 @@
-let x = fun x -> x in x := fun z -> z+1 end
+let x = fun x -> x+1 in x := fun z -> z end
