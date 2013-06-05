@@ -40,7 +40,7 @@ public class IfThenElse extends Expression{
 			}
 			System.exit(-1);
 		}
-		if (!isThenElseTypeEqual()){
+		if (!Util.twoExprTypeEqual(thenClause, elseClause)){
 			System.out.println("Type Error!");
 			if (Interpreter.debug){
 				System.out.println("In IfThenElse: then else not type equal");

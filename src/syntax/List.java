@@ -27,6 +27,14 @@ public class List extends Expression{
 				ListValue tmp = (ListValue) t;
 				if (h.getClass().equals(tmp.head.getClass()))
 					return new ListValue(h , t);
+				else
+				{
+					System.out.println("Type Error!");
+					if (Interpreter.debug){
+						System.out.println("in List: TypeError");
+					}
+					System.exit(-1);
+				}
 			}
 		} catch (Exception e){
 			System.out.println("Type Error!");

@@ -36,7 +36,7 @@ public class Assignment extends Expression{
 				System.out.println("Runtime Error!");
 				System.exit(-1);
 			}
-			if (!(isTwoValueTypeEqual(old, newValue)))
+			if (!(Util.twoExprTypeEqual(old, newValue)))
 			{
 				System.out.println("Type Error!");
 				System.exit(-1);
