@@ -51,7 +51,7 @@ import syntax.*;
 
 %%
 
-prog : expr { System.out.println(Interpreter.PROMTINFO+((Expression)$1).eval()); };
+prog : expr { Interpreter.final_result=((Expression)$1).eval(); };
 
 expr : expr SEMICOLON expr {$$ = new Sequence($1,$3);}
 	|  FUN ID LAMDA expr {$$ = new AnonymousFunction(new Variable($2), $4);}

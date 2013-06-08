@@ -1,4 +1,4 @@
-// Output created by jacc on Sat Jun 08 14:43:54 CST 2013
+// Output created by jacc on Sat Jun 08 17:42:39 CST 2013
 
 package interpreter;
 
@@ -1084,11 +1084,11 @@ class Parser implements Tokens {
                 case 154:
                     return true;
                 case 155:
-                    yyerror("Stack Overflow!");
+                    yyerror("stack overflow");
                 case 156:
                     return false;
                 case 157:
-                    yyerror("Syntax Error!");
+                    yyerror("syntax error");
                     return false;
             }
         }
@@ -2803,7 +2803,7 @@ class Parser implements Tokens {
     }
 
     private int yyr1() { // prog : expr
-        { System.out.println(Interpreter.PROMTINFO+((Expression)yysv[yysp-1]).eval()); }
+        { Interpreter.final_result=((Expression)yysv[yysp-1]).eval(); }
         yysv[yysp-=1] = yyrv;
         return 1;
     }

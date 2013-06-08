@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Lexer {
-	String SPERATORSET = "[:;()+-/=><~\n\f\r\t /*]";
+	String SPERATORSET = "[$:;()+-/=><~\n\f\r\t /*]";
 	String SPERATORSET_SHELL = "[$:;()+-/=><~\n\f\r\t /*]";
     Pattern SPERATOR = Pattern.compile(SPERATORSET);
     Pattern SPERATOR_SHELL = Pattern.compile(SPERATORSET_SHELL);
@@ -151,11 +151,14 @@ public class Lexer {
 		      }
 		      switch (c) {
 		        case '$' : 
+		        	      return (token=Tokens.ENDINPUT);
+		        	      /*
 		        	      if (Interpreter.shellMode == true){
 		        	    	  return (token=Tokens.ENDINPUT);
 		        	      } else {
 		        	    	  yyerror("Syntax Error! Illegal character "+"$" + "in file mode");
 		        	      }
+		        	      */
 		        case '+' : // '+'
 		        	       nextChar();
 		        	       return token=Tokens.PLUS;
