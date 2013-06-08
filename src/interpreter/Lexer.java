@@ -91,6 +91,9 @@ public class Lexer {
 			if (c < 0)
 				break;
 			char tmp = (char)c;
+			if (tmp == '.'){
+				yyerror("Syntax Error! To get an integer, here should be a digit, but it is " + tmp);
+			}
 			s += tmp;
 			Matcher matcher = null;
 			if (Interpreter.shellMode)
@@ -100,7 +103,7 @@ public class Lexer {
 			if (matcher.matches() == true)
 				break;
 			if (!(tmp>='0' && tmp<='9'))
-				yyerror("get an integer, here should be a digit, but it is " + tmp);
+				yyerror("Syntax Error! To get an integer, here should be a digit, but it is " + tmp);
 			getChar();
 		}while(true);
 	}
@@ -114,6 +117,9 @@ public class Lexer {
 			if (c < 0)
 				break;
 			char tmp = (char)c;
+			if (tmp == '.'){
+				yyerror("Syntax Error! To get an integer, here should be a digit, but it is " + tmp);
+			}
 			s += tmp;
 			Matcher matcher = null;
 			if (Interpreter.shellMode)
@@ -123,12 +129,12 @@ public class Lexer {
 			if (matcher.matches() == true)
 				break;
 			if (!((tmp >= 'a' && tmp <= 'z') ||(tmp>='0' && tmp<='9')))
-				yyerror("get an ID, here should be a valid char, but it is " + tmp);
+				yyerror("Syntax Error! To get an ID, here should be a valid char, but it is " + tmp);
 			getChar();
 		}while(true);
 		char first = yylval.charAt(0);
 		if (!(first >= 'a' && first <= 'z')){
-			yyerror("get an ID, the fisrt char should be a valid char, but it is " + first);
+			yyerror("Syntax Error! To get an ID, the fisrt char should be a valid char, but it is " + first);
 		}
 	}
 	
@@ -148,7 +154,7 @@ public class Lexer {
 		        	      if (Interpreter.shellMode == true){
 		        	    	  return (token=Tokens.ENDINPUT);
 		        	      } else {
-		        	    	  yyerror("Illegal character "+"$" + "in file mode");
+		        	    	  yyerror("Syntax Error! Illegal character "+"$" + "in file mode");
 		        	      }
 		        case '+' : // '+'
 		        	       nextChar();

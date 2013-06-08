@@ -26,7 +26,7 @@ public class Tail extends Expression{
 			ListValue v = (ListValue) o;			
 			return v.tail.eval();
 		}catch (Exception e) {
-			System.out.println("Runtime Error!");
+			System.out.println("Type Error!");
 			if (Interpreter.debug){
 				e.printStackTrace();
 			}

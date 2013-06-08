@@ -1,6 +1,8 @@
 package syntax;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import symbol.SymbolTable;
 import interpreter.Interpreter;
@@ -49,7 +51,29 @@ public class AnonymousFunction extends Value{
 	public Value eval() {
 		if (Interpreter.debug)
 			System.out.println("STD : "+getStdString());
+		if (validatePara() == false)
+		{
+			System.out.println("Syntax Error!");
+			if (Interpreter.debug)
+				System.out.println("two parameter with the same name. " + this.toString());
+			System.exit(-1);
+		}
 		return this;
+	}
+	
+	private boolean validatePara(){
+		Map<String, Boolean> exist = new HashMap<String, Boolean>();
+		exist.put(arg.name, true);
+		Expression e = body;
+		while (e instanceof AnonymousFunction){
+			AnonymousFunction innerFun = ((AnonymousFunction)e);
+			if (exist.containsKey(innerFun.arg.name))
+				return false;
+			else
+				exist.put(innerFun.arg.name, true);
+			e = innerFun.body;
+		}
+		return true;
 	}
 	
 	public String getStdString() {

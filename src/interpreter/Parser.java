@@ -1,4 +1,4 @@
-// Output created by jacc on Wed Jun 05 17:11:17 CST 2013
+// Output created by jacc on Sat Jun 08 14:43:54 CST 2013
 
 package interpreter;
 
@@ -1084,11 +1084,11 @@ class Parser implements Tokens {
                 case 154:
                     return true;
                 case 155:
-                    yyerror("stack overflow");
+                    yyerror("Stack Overflow!");
                 case 156:
                     return false;
                 case 157:
-                    yyerror("syntax error");
+                    yyerror("Syntax Error!");
                     return false;
             }
         }
