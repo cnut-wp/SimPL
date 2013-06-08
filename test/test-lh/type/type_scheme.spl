@@ -1,0 +1,5 @@
+let append = fun x -> fun y -> x :: y
+in
+	((append 1) nil)
+end
+$

@@ -4,10 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
-
+import java.io.PrintStream;
 import symbol.SymbolTable;
 import syntax.Value;
 
@@ -20,6 +18,7 @@ public class Interpreter {
 	public static Lexer lexer = null;
 	public static Parser parser = null;
 	public static Value final_result = null;
+	public static PrintStream out = null;
 	
 	public static String tokenName[] = {"ENDINPUT","AND", "ASSIGN","BOOLEAN", "COMMA", "CONS", 
 		"DEVIDE", "DO", "ELSE","END","EQ", "FST","FUN","GT","HEAD","ID","IF","IN","INTEGER",
@@ -50,27 +49,6 @@ public class Interpreter {
 		return in;
 	}
 	
-	private static boolean writeFileResult(String fileName, String result) {
-		File file = new File(fileName);
-		OutputStream out = null;
-		try {
-			out = new FileOutputStream(file);
-			out.write(result.getBytes());
-			out.close();
-			return true;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			System.err.println("Cannot file [" + fileName + "]");
-			System.exit(-1);	
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			System.err.println("Cannot write to file [" + fileName + "]");
-			System.exit(-1);
-		}
-		return false;
-	}
-	
 	public static String getResultFileName(String inputFile){
 		int i = 0;
 		for (i = inputFile.length()-1; i >= 0 ; i--){
@@ -89,28 +67,40 @@ public class Interpreter {
 	public static void main(String args[]) {
 		if (args.length == 1 && args[0].equals("-s")) {
 			Interpreter.shellMode = true;
-			lexer = new Lexer(System.in);	
+			lexer = new Lexer(System.in);
+			out = System.out;
 		} else if (args.length == 2 && args[0].equals("-f")) {
 			lexer = new Lexer(getFileInputStream(args[1]));
+			try {
+				out = new PrintStream(
+						(new FileOutputStream(getResultFileName(args[1]))));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				if (Interpreter.debug){
+					e.printStackTrace();
+				}
+				System.exit(-1);
+			}
 		} else if (args.length == 2 && args[0].equals("-s") && args[1].equals("-d")) {
 			Interpreter.shellMode = true;
 			Interpreter.debug = true;
 			lexer = new Lexer(System.in);
+			out = System.out;
 		} else {
 			printUsage(args);
 		}
 		if (Interpreter.shellMode){
 			Interpreter.PROMTINFO = Interpreter.PROMTINFOMETA;
-			System.out.print(Interpreter.PROMTINFO);
+			out.print(Interpreter.PROMTINFO);
 		}
 		lexer.nextChar();
 		lexer.yylex();
 		parser = new Parser();
 		parser.parse();
 		if (Interpreter.shellMode){
-			System.out.println(Interpreter.PROMTINFO+Interpreter.final_result);
+			out.println(Interpreter.PROMTINFO+Interpreter.final_result);
 		} else {
-			writeFileResult(getResultFileName(args[1]), Interpreter.final_result.toString());
+			out.println(Interpreter.final_result.toString());
 		}
 
 		/*

@@ -1,0 +1,6 @@
+/*Output: 7*/
+let f = fun x -> x + 1
+in
+	(f 2) + (f 3)
+end	
+$

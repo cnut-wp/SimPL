@@ -14,9 +14,9 @@ public class List extends Expression{
 		Value h = head.eval();
 		Value t = tail.eval();
 		if (h == null || t == null){	
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug){
-				System.out.println("In List: head" + h + " tail" + tail);
+				Interpreter.out.println("In List: head" + h + " tail" + tail);
 			}
 			System.exit(-1);
 		}
@@ -29,15 +29,15 @@ public class List extends Expression{
 					return new ListValue(h , t);
 				else
 				{
-					System.out.println("Type Error!");
+					Interpreter.out.println("Type Error!");
 					if (Interpreter.debug){
-						System.out.println("in List: TypeError");
+						Interpreter.out.println("in List: TypeError");
 					}
 					System.exit(-1);
 				}
 			}
 		} catch (Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug){
 				e.printStackTrace();
 			}
@@ -52,7 +52,7 @@ public class List extends Expression{
 			head = (Expression) o1;
 			tail = (Expression) o2;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}

@@ -1084,11 +1084,11 @@ class Parser implements Tokens {
                 case 154:
                     return true;
                 case 155:
-                    yyerror("stack overflow");
+                    yyerror("Stack Overflow!");
                 case 156:
                     return false;
                 case 157:
-                    yyerror("syntax error");
+                    yyerror("Syntax Error!");
                     return false;
             }
         }
@@ -3046,7 +3046,7 @@ private void yyerror(String msg) {
                 prefix += " " +Lexer.yylval;
             }
             prefix += "]\t";
-        System.out.println(prefix+msg);
+        Interpreter.out.println(prefix+msg);
         System.exit(1);
 }
 

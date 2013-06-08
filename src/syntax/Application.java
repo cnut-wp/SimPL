@@ -16,7 +16,7 @@ public class Application extends Expression{
 			func = (Expression) yysv;
 			param = (Expression) yysv2;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -29,7 +29,7 @@ public class Application extends Expression{
 		try{
 			finalFunc = (AnonymousFunction) func.eval();
 		}catch (Exception e) {
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug){
 				e.printStackTrace();
 			}

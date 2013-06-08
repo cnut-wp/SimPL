@@ -32,7 +32,7 @@ public class AnonymousFunction extends Value{
 			this.body = (Expression) yysv2;
 			localTable = (SymbolTable) Interpreter.symbolTable.clone();
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -50,12 +50,12 @@ public class AnonymousFunction extends Value{
 	 */
 	public Value eval() {
 		if (Interpreter.debug)
-			System.out.println("STD : "+getStdString());
+			Interpreter.out.println("STD : "+getStdString());
 		if (validatePara() == false)
 		{
-			System.out.println("Syntax Error!");
+			Interpreter.out.println("Syntax Error!");
 			if (Interpreter.debug)
-				System.out.println("two parameter with the same name. " + this.toString());
+				Interpreter.out.println("two parameter with the same name. " + this.toString());
 			System.exit(-1);
 		}
 		return this;
@@ -94,7 +94,7 @@ public class AnonymousFunction extends Value{
 					same = true; break;
 				}
 			if (same) continue;
-			//System.out.println("replace "+ v );
+			//Interpreter.out.println("replace "+ v );
 			if (std.endsWith(" "+v)) {
 				int index = std.lastIndexOf(" "+v);
 				std = std.substring(0,index);
@@ -133,7 +133,7 @@ public class AnonymousFunction extends Value{
 			((AnonymousFunction)resultFun).localTable.push(arg, e.eval());
 			result = resultFun.eval();
 			if (Interpreter.debug)
-				System.out.println("application apply: "+ resultFun.totalToString());
+				Interpreter.out.println("application apply: "+ resultFun.totalToString());
 		} else {
 			this.localTable.push(arg, e.eval());
 			SymbolTable tmp = Interpreter.symbolTable;

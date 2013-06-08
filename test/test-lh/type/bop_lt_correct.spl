@@ -1,0 +1,5 @@
+let bop = fun x -> fun y -> x < y
+in
+	((bop 3) undef)
+end
+$

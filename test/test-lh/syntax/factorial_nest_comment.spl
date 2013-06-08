@@ -1,0 +1,9 @@
+/* This is a multi-line comment 
+	/* that can nest */. */
+
+let
+	f = fun x -> (if x = 1 then 1 else x * (f (x-1)) end) 
+in
+	(f 4)
+end
+$

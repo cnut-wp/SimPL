@@ -51,7 +51,7 @@ public class Lexer {
 				if (c == '\n'){
 					if (Interpreter.shellMode){
 						for (int i = 0; i< Interpreter.PROMTINFO.length(); i++)
-						System.out.print(' ');
+						Interpreter.out.print(' ');
 					}
 				}
 			} catch (Exception e) {
@@ -70,7 +70,7 @@ public class Lexer {
 				if (c == '\n'){
 					if (Interpreter.shellMode){
 						for (int i = 0; i< Interpreter.PROMTINFO.length(); i++)
-						System.out.print(' ');
+						Interpreter.out.print(' ');
 					}
 				}
 			} catch (Exception e) {
@@ -80,7 +80,7 @@ public class Lexer {
 	}
 	
 	private void yyerror(String s){
-		System.err.println("at line "+ line + ": " + s);
+		Interpreter.out.println("at line "+ line + ": " + s);
 		System.exit(-1);
 	}
 

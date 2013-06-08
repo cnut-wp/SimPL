@@ -11,7 +11,7 @@ public class IntValue extends Value{
 			value =  Integer.parseInt((String)i);
 			isUndef = false;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -31,7 +31,7 @@ public class IntValue extends Value{
 	
 	public Value eval() {
 		if (isUndef){
-			System.out.println("access undef integer, runtime error");
+			Interpreter.out.println("access undef integer, runtime error");
 			System.exit(-1);
 			return null;
 		}

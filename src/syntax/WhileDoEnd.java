@@ -14,9 +14,9 @@ public class WhileDoEnd extends Expression{
 		while (true){
 			Value c = condition.eval();
 			if (c==null) {
-				System.out.println("RunTime Error!");
+				Interpreter.out.println("RunTime Error!");
 				if (Interpreter.debug){
-					System.out.println("In WhileDoEnd: " + c);
+					Interpreter.out.println("In WhileDoEnd: " + c);
 				}
 				System.exit(-1);
 			}
@@ -24,7 +24,7 @@ public class WhileDoEnd extends Expression{
 			try {
 				b = ((BoolValue)c).value;
 			}catch(Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -33,9 +33,9 @@ public class WhileDoEnd extends Expression{
 			if (b){
 				Value tmp = body.eval();
 				if (!(tmp instanceof Nop)){
-					System.out.println("Type Error!");
+					Interpreter.out.println("Type Error!");
 					if (Interpreter.debug){
-						System.out.println("In WhileDoEnd: " + "do is not Nop");
+						Interpreter.out.println("In WhileDoEnd: " + "do is not Nop");
 					}
 					System.exit(-1);
 				}
@@ -50,7 +50,7 @@ public class WhileDoEnd extends Expression{
 			condition = (Expression) c;
 			body = (Expression) b;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}

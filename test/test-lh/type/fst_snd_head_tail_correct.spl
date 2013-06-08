@@ -1,0 +1,5 @@
+1 := fst (1 , true);
+false := snd (false , false);
+1 := head (1 :: nil);
+tail (true :: nil)
+$

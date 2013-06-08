@@ -14,7 +14,7 @@ public class Pair extends Expression{
 			e1 = (Expression) yysv;
 			e2 = (Expression) yysv2;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -25,9 +25,9 @@ public class Pair extends Expression{
 		Value f = (Value) e1.eval();
 		Value s = (Value) e2.eval();
 		if (f == null || s == null){
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug){
-				System.out.println("In Pair: first:" +f + " second:" + s);
+				Interpreter.out.println("In Pair: first:" +f + " second:" + s);
 			}
 			System.exit(-1);
 		}

@@ -1,0 +1,6 @@
+10 + 20 * 30 - 40;
+true and false or not not true or 10 > 5 and 6 = 6;
+10 + ~20;
+x := fst list :: snd list :: head nil :: tail nil;
+fun x -> fun y -> fun z -> x + y +z
+$

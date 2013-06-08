@@ -1,0 +1,5 @@
+let assign = fun x-> fun y -> x := y 
+in 
+	((assign 1) true)
+end 
+$

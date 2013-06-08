@@ -8,7 +8,7 @@ public class Bracket extends Expression{
 		try {
 			e = (Expression) o;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -21,9 +21,9 @@ public class Bracket extends Expression{
 	
 	public Value eval() {
 		if (e == null){
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug){
-				System.out.println("in Bracket:" + e);
+				Interpreter.out.println("in Bracket:" + e);
 			}
 			System.exit(-1);
 		}

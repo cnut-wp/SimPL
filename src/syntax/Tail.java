@@ -8,7 +8,7 @@ public class Tail extends Expression{
 		try {
 			e = (Expression) o;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -26,7 +26,7 @@ public class Tail extends Expression{
 			ListValue v = (ListValue) o;			
 			return v.tail.eval();
 		}catch (Exception e) {
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug){
 				e.printStackTrace();
 			}

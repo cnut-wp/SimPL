@@ -15,7 +15,7 @@ public class UnaryOperation extends Expression{
 			e = (Expression) exp;
 			op = uop;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -37,9 +37,9 @@ public class UnaryOperation extends Expression{
 	public Value eval() {
 		Value o = e.eval();
 		if (o==null) {
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug){
-				System.out.println("In UnaryOperation: " + o);
+				Interpreter.out.println("In UnaryOperation: " + o);
 			}
 			System.exit(-1);
 		}
@@ -50,7 +50,7 @@ public class UnaryOperation extends Expression{
 				return new BoolValue(!b);
 			}
 			catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -63,7 +63,7 @@ public class UnaryOperation extends Expression{
 				return new IntValue(-b);
 			}
 			catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}

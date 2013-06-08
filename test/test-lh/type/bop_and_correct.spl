@@ -1,0 +1,5 @@
+let bop = fun x -> fun y -> x and y
+in
+	((bop false) true)
+end
+$

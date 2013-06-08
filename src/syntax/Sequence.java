@@ -11,7 +11,7 @@ public class Sequence extends Expression{
 			e1 = (Expression) o1;
 			e2 = (Expression) o2;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -25,14 +25,14 @@ public class Sequence extends Expression{
 	public Value eval() {
 		if (e1 == null || e2 == null)
 		{
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug){
-				System.out.println("In Sequence: " + e1 + "\t" + e2);
+				Interpreter.out.println("In Sequence: " + e1 + "\t" + e2);
 			}
 			System.exit(-1);
 		}
 	    if (!(e1.eval() instanceof Nop)){
-	    	System.out.println("Type Error!");
+	    	Interpreter.out.println("Type Error!");
 			System.exit(-1);
 	    }
 		return e2.eval();

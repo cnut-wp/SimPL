@@ -1,0 +1,4 @@
+/*Output: 3*/
+/* ((fun x -> fun y -> x + y 1) (fun x -> x 2)) */
+((fun x -> fun y -> x + y 1) 2)
+$

@@ -18,7 +18,7 @@ public class LetInEnd extends Expression{
 			definition = (Expression) def;
 			this.body = (Expression) body; 
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -31,9 +31,9 @@ public class LetInEnd extends Expression{
 				
 		Value d = definition.eval();
 		if (d==null){
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug){
-				System.out.println("In LetInEnd: " + d + " not in symbolTalbe");
+				Interpreter.out.println("In LetInEnd: " + d + " not in symbolTalbe");
 			}
 			System.exit(-1);
 		}

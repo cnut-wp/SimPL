@@ -1,0 +1,11 @@
+/* Output: 17*/
+let z = 3
+in
+	let f = fun x ->	t := x + z; /*z shall be 4*/
+					 	fun y -> x + y + z + t
+	in
+		z := 4;
+	    ((f 2) 5)
+	end
+end				 
+$

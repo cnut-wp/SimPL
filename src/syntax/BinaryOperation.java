@@ -17,7 +17,7 @@ public class BinaryOperation extends Expression{
 			this.op = op;
 			this.e2 = (Expression) yysv2;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -54,10 +54,10 @@ public class BinaryOperation extends Expression{
 		Value o1 = e1.eval();
 		Value o2 = e2.eval();
 		if (o1 == null || o2 == null) {
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug)
 			{
-				System.out.println("in BinaryOperation," + o1 + '\t'+ o2);
+				Interpreter.out.println("in BinaryOperation," + o1 + '\t'+ o2);
 			}
 			System.exit(-1);
 		}
@@ -69,7 +69,7 @@ public class BinaryOperation extends Expression{
 				int i2 = ((IntValue)o2).value;
 				return new IntValue(i1+i2);
 			}catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -82,7 +82,7 @@ public class BinaryOperation extends Expression{
 				int i2 = ((IntValue)o2).value;
 				return new IntValue(i1-i2);
 			}catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -95,7 +95,7 @@ public class BinaryOperation extends Expression{
 				int i2 = ((IntValue)o2).value;
 				return new IntValue(i1*i2);
 			}catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -112,13 +112,13 @@ public class BinaryOperation extends Expression{
 				if (i2 == 0){
 					IntValue ret = new IntValue(0);
 					ret.isUndef=true;
-					System.out.println("Div0, return value is undef");
+					Interpreter.out.println("Div0, return value is undef");
 					return ret;
 				}else {
 					return new IntValue(i1/i2);
 				}
 			}catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -131,7 +131,7 @@ public class BinaryOperation extends Expression{
 				int i2 = ((IntValue)o2).value;
 				return new BoolValue(i1>i2);
 			}catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -144,7 +144,7 @@ public class BinaryOperation extends Expression{
 				int i2 = ((IntValue)o2).value;
 				return new BoolValue(i1<i2);
 			}catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -164,7 +164,7 @@ public class BinaryOperation extends Expression{
 				*/
 				return o1.equal(o2);
 			}catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -177,7 +177,7 @@ public class BinaryOperation extends Expression{
 				boolean i2 = ((BoolValue)o2).value;
 				return new BoolValue(i1&&i2);
 			}catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}
@@ -190,7 +190,7 @@ public class BinaryOperation extends Expression{
 				boolean i2 = ((BoolValue)o2).value;
 				return new BoolValue(i1||i2);
 			}catch (Exception e) {
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				if (Interpreter.debug){
 					e.printStackTrace();
 				}

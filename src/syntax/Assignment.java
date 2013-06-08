@@ -16,7 +16,7 @@ public class Assignment extends Expression{
 			var = (Expression) yysv;
 			val = (Expression) yysv2;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -25,7 +25,7 @@ public class Assignment extends Expression{
 	}
 	public Value eval() {
 		if (var == null || val == null){
-			System.out.println("Rutime Error!");
+			Interpreter.out.println("Rutime Error!");
 			System.exit(-1);
 		}
 		try {
@@ -33,21 +33,21 @@ public class Assignment extends Expression{
 			Value old = Interpreter.symbolTable.get(variable);
 			Value newValue = val.eval();
 			if (old == null){
-				System.out.println("Runtime Error!");
+				Interpreter.out.println("Runtime Error!");
 				System.exit(-1);
 			}
 			if (!(Util.twoExprTypeEqual(old, newValue)))
 			{
-				System.out.println("Type Error!");
+				Interpreter.out.println("Type Error!");
 				System.exit(-1);
 			} else {
 				Interpreter.symbolTable.set(variable, newValue);
 			}
 			return new Nop();
 		} catch (Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug)
-				System.out.println(e.toString());
+				Interpreter.out.println(e.toString());
 			System.exit(-1);
 		}
 		return new Nop();

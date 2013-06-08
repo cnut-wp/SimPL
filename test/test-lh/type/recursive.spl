@@ -1,0 +1,5 @@
+let f = fun x -> x
+in
+	1 := 1 + (f 1);(f true)
+end
+$

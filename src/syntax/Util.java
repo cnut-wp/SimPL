@@ -9,9 +9,9 @@ public class Util {
 	
 	public static boolean twoExprTypeEqual(Expression e1, Expression e2) {
 		if (e1 == null || e2 == null){
-			System.out.println("Runtime Error");
+			Interpreter.out.println("Runtime Error");
 			if (Interpreter.debug){
-				System.out.println("In twoExprTypeEqual: " + e1 + e2);
+				Interpreter.out.println("In twoExprTypeEqual: " + e1 + e2);
 			}
 			System.exit(-1);
 		}
@@ -52,9 +52,9 @@ public class Util {
 	
 	public static boolean twoRetTypeEqual(Expression e1, Expression e2) {
 		if (e1 == null || e2 == null){
-			System.out.println("Runtime Error");
+			Interpreter.out.println("Runtime Error");
 			if (Interpreter.debug){
-				System.out.println("In twoExprTypeEqual: " + e1 + e2);
+				Interpreter.out.println("In twoExprTypeEqual: " + e1 + e2);
 			}
 			System.exit(-1);
 		}
@@ -250,7 +250,7 @@ public class Util {
 			}
 			return null;
 		} catch (Exception ex){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug)
 			{
 				ex.printStackTrace();

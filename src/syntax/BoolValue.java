@@ -11,7 +11,7 @@ public class BoolValue extends Value{
 			value = Boolean.parseBoolean((String)b);
 			undef = false;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -33,7 +33,7 @@ public class BoolValue extends Value{
 	public Value eval() {
 		if (undef)
 		{
-			System.out.println("access undef boolean, Runtime error");
+			Interpreter.out.println("access undef boolean, Runtime error");
 			System.exit(-1);
 			return null;
 		}else{

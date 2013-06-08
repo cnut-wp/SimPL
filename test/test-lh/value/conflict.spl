@@ -1,0 +1,6 @@
+/* Output: Conflict of bound variable */
+let f = (fun x -> fun x -> x + x)
+in
+	((f 1) 2)
+end
+$

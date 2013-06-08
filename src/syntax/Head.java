@@ -8,7 +8,7 @@ public class Head extends Expression{
 		try {
 			e = (Expression) o;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -27,7 +27,7 @@ public class Head extends Expression{
 			Value head = v.head;
 			return head.eval();
 		}catch (Exception e) {
-			System.out.println("Type error!");
+			Interpreter.out.println("Type error!");
 			if (Interpreter.debug){
 				e.printStackTrace();
 			}

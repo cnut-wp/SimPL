@@ -13,7 +13,7 @@ public class First extends Expression{
 		try {
 			e = (Expression) yysv;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -27,7 +27,7 @@ public class First extends Expression{
 			PairValue pv = (PairValue)e.eval();
 			return pv.first;
 		}catch (Exception e) {
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug){
 				e.printStackTrace();
 			}

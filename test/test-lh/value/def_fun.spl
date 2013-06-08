@@ -1,0 +1,13 @@
+/* in the function define a function
+   Output: 7
+*/
+(
+(fun x ->
+	let f = fun y -> x + y
+	in
+		f
+	end
+ 3	
+)	
+4)
+$

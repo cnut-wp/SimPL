@@ -15,7 +15,7 @@ public class IfThenElse extends Expression{
 			thenClause = (Expression) o2;
 			elseClause = (Expression) o3;
 		} catch ( Exception e){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug == true){
 				e.printStackTrace();
 			}
@@ -34,33 +34,33 @@ public class IfThenElse extends Expression{
 	
 	public Value eval() {
 		if (condition == null || thenClause == null || elseClause == null) {
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug){
-				System.out.println("In IfThenElse: null expr");
+				Interpreter.out.println("In IfThenElse: null expr");
 			}
 			System.exit(-1);
 		}
 		if (!Util.twoExprTypeEqual(thenClause, elseClause)){
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug){
-				System.out.println("In IfThenElse: then else not type equal");
+				Interpreter.out.println("In IfThenElse: then else not type equal");
 			}
 			System.exit(-1);
 		}
 		Value c = condition.eval(); boolean b = false;
 		if (c==null){
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug){
-				System.out.println("In IfThenElse: Condition eval return null");
+				Interpreter.out.println("In IfThenElse: Condition eval return null");
 			}
 			System.exit(-1);
 		}
 		try {
 			b = ((BoolValue)c).value;			
 		}catch (Exception e) {
-			System.out.println("Type Error!");
+			Interpreter.out.println("Type Error!");
 			if (Interpreter.debug){
-				System.out.println("In IfThenElse: Condition eval return not BoolValue");
+				Interpreter.out.println("In IfThenElse: Condition eval return not BoolValue");
 			}
 			System.exit(-1);
 		}

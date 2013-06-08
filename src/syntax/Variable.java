@@ -15,9 +15,9 @@ public class Variable extends Expression{
 	public Value eval() {
 		Value ret = Interpreter.symbolTable.get(this);
 		if (ret == null){
-			System.out.println("Runtime Error!");
+			Interpreter.out.println("Runtime Error!");
 			if (Interpreter.debug){
-				System.out.println("In Variable: return value is null");
+				Interpreter.out.println("In Variable: return value is null");
 			}
 			System.exit(-1);
 		}
