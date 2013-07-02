@@ -1,1 +1,5 @@
 A Repo for Course Project, Simple-PL.
+Simple-PL is a simple language which supports lamda-calculus. For the detailed specification, refer to the SimplePL-Project-SpecV3.0.pdf.
+This project implemements a Simple-PL interpreter. And it is just a demo project
+.
+There are some test cases in the directory of "test", if you are interested in them, you may have a look.
